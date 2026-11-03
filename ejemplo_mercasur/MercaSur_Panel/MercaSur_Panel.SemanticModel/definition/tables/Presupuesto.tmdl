@@ -1,0 +1,47 @@
+table Presupuesto
+	lineageTag: 3da996dd-4b25-5cf5-b04c-bbdec9b67267
+
+	column id_tienda
+		dataType: string
+		isHidden
+		lineageTag: 06cac344-bdf1-56f6-8579-16448009e151
+		summarizeBy: none
+		sourceColumn: id_tienda
+
+	column linea
+		dataType: string
+		lineageTag: 088d5db5-b700-5693-a334-143cf06d130c
+		summarizeBy: none
+		sourceColumn: linea
+
+	column semestre
+		dataType: string
+		lineageTag: 7a6d4f67-3550-5afb-be07-f8c4edc00924
+		summarizeBy: none
+		sourceColumn: semestre
+
+	column objetivo_usd
+		dataType: double
+		lineageTag: b8161980-af95-5e28-9d56-2a41acee869b
+		summarizeBy: sum
+		sourceColumn: objetivo_usd
+
+	column Anio
+		dataType: int64
+		isHidden
+		lineageTag: 87de8c08-ab94-51bb-be80-1bc32dd2c2d2
+		summarizeBy: none
+		sourceColumn: Anio
+
+	partition Presupuesto = m
+		mode: import
+		source =
+			let
+							Origen = Csv.Document(Binary.Decompress(Binary.FromText(
+							"fZdfbhs5DMbfF9ibuABFipT42Gb9p/G89QCFNzEKL9IESNxerEfYiy2pmQ0wsthXfuLQ+ukTRV8ev14v5+fH0+bp8nw+bd7O389v19fz5uXvf87Xy8+Xrz/eHv/84+Pm49Pl+/n5enq4/PvreYOA+cOXtCHQQhzpuCHJXGWoc8tPwiVFestXra4fXr6dXt/rIjJl6OO4Qa6A6/WtDibKdBO39cSM5PHt0/nh+mq1Lw+n9zJJNVEKZMsWTYlH8lyUiFQD2bKrEFr2p4AtSgbIkW75ioXrUJ/LM9rPi3TPt6Np9ddsU00JoY/beqgl4Sre6iQhgNrH0eDZ59v6MVvJUiiQvRpzGWbPRUsCkED2c61QbW93EVuEAhjpnq/ke7qL2KacJNQ9X0Tb9zu2ZIcGfdxYmTtlvX7eJlGe63Rszc/Y9jdma86TSLZs843b+i5gS7X59m7MNomCmPxXxJZVWSLd7jRkUBrqM9siGSXS3bd27dj1jq0mM3wfdycZjbqKLxYy/1Mf9/VAtdUfsy3KUALZslGk1pG8FK2FciC7b7K6b7cRW4OfJNK9/0nb0zZiawfrd3gbseVScsvv2HKWOa/zbVWquorzsh6p9PHZO5g8PmabVUAD2atZF8eRvBTV6pdrG7CFXNxXu7An2Pc50i0/azu6XcQWBb1n7CK22X5gq9+xzYXdt7ueLYvtZxVfrqe1LuzjrSfQXD/oCWatHMjOtlZHv4vYZmYJZM/mIraHfcS2ym906wnMnMf6PCfYOu+n+2hOyBn8bPf9nOCviPZxv2ep7Xbfs1VMDH3c1qeCfhb7qCdIe4r3QU+wWQVoJC9Fi1kgkN03mdRqHwK2fnJ+Zw+RbxMUP7pDwDbZlfQ9HyLfmq+w6f1bxpi5j6M/H1zX8bkOEhL0cVsPsuxvzNbuTZVAbrcku60P0VtmJ82B7P2Iiv+mz3FPYKZI935Jmcf573NC0kj3s0Wc63dsxSaI2sd9t0U1r+LzNjNW3+bnm55QLcXjQb+lmnIg+60GVBjJS0+oiDmQvd8m9l5/H7CFSHKsqfpYfh9hzUQc6j6Yi7K6vsYKfQjbGFpxFV+mWkbQPt7eIIW2fkgUAsUTEb1F3Qcw7c9AoUD2sQLbQ3uMYR4DmGPp/ym6DSvH0J5c/XIdbzkeO47r0Px1gOIP3rFHyMDQ1kcIj2OEQ2UpVcH/axyj54nQr+EU05tielNAz/oShrL7v1jrdf0G3nQLb+r/sWrxoWDq2dkbz9njEbspZDeN2RGqe2CKOqQ9rObL/wA=",
+							BinaryEncoding.Base64), Compression.Deflate), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+							Encabezados = Table.PromoteHeaders(Origen, [PromoteAllScalars=true]),
+							Tipos = Table.TransformColumnTypes(Encabezados, {{"id_tienda", type text}, {"linea", type text}, {"semestre", type text}, {"objetivo_usd", type number}}, "en-US"),
+							ConAnio = Table.AddColumn(Tipos, "Anio", each Number.From(Text.Start([semestre], 4)), Int64.Type)
+			in
+							ConAnio

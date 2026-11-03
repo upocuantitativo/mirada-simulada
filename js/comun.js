@@ -19,7 +19,7 @@
   if (!pag) return;
   const s = leer();
   if (!s) { location.replace('index.html?volver=' + encodeURIComponent(location.pathname.split('/').pop() + location.search)); return; }
-  const items = [['centro', 'centro.html', 'Inicio'], ['teoria', 'teoria.html', 'Teoría'], ['lab', 'lab.html', 'Laboratorio'], ['equipo', 'equipo.html', 'Equipo de agentes'], ['ejercicios', 'ejercicios.html', 'Ejercicios'], ['montar', 'montar.html', 'Móntalo tú']];
+  const items = [['centro', 'centro.html', 'Inicio'], ['teoria', 'teoria.html', 'Teoría'], ['lab', 'lab.html', 'Laboratorio'], ['equipo', 'equipo.html', 'Equipo de agentes'], ['ejercicios', 'ejercicios.html', 'Ejercicios'], ['comprobar', 'comprobar.html', 'Comprueba tu panel'], ['ia', 'ia_powerbi.html', 'Claude y Codex en Power BI'], ['montar', 'montar.html', 'Móntalo tú']];
   const h = document.createElement('header'); h.className = 'barra';
   h.innerHTML = '<a class="marca" href="centro.html">Mirada simulada</a><nav aria-label="Secciones">' + items.map(i => `<a href="${i[1]}"${i[0] === pag ? ' aria-current="page"' : ''}>${i[2]}</a>`).join('') + '</nav><div class="quien"></div>';
   document.body.prepend(h);

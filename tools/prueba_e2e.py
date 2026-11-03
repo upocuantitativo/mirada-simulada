@@ -45,7 +45,7 @@ with sync_playwright() as p:
     pg.set_input_files('#fichero', os.path.join(RAIZ, 'casos', 'web_antes.png')); pg.wait_for_timeout(600)
     pg.locator('#base').scroll_into_view_if_needed(); bx = pg.locator('#base').bounding_box(); pg.mouse.move(bx['x'] + 40, bx['y'] + 40); pg.mouse.down(); pg.mouse.move(bx['x'] + 300, bx['y'] + 140, steps=4); pg.mouse.up()
     ok(pg.evaluate('__lab.aois.length') == 1, 'se dibuja una zona sobre captura propia')
-    for n in ['teoria', 'equipo', 'ejercicios', 'montar', 'centro']:
+    for n in ['teoria', 'equipo', 'ejercicios', 'comprobar', 'ia_powerbi', 'montar', 'centro']:
         if os.path.exists(os.path.join(RAIZ, n + '.html')):
             pg.goto(U + n + '.html'); pg.wait_for_timeout(2500 if n == 'teoria' else 500)
             if CAP: pg.screenshot(path=os.path.join(CAP, n + '.png'), full_page=True)
@@ -53,11 +53,18 @@ with sync_playwright() as p:
     desb = m.evaluate('document.documentElement.scrollWidth>innerWidth'); ok(not desb, 'acceso sin desborde en móvil')
     if CAP: m.screenshot(path=os.path.join(CAP, 'm_acceso.png'))
     m.fill('#nombre', 'Persona Prueba'); m.fill('#correo', 'a@b.es'); m.fill('#codigo', CODIGO); m.click('button[type=submit]'); m.wait_for_url('**/centro.html')
-    for n in ['lab', 'teoria', 'equipo', 'ejercicios', 'montar']:
+    for n in ['lab', 'teoria', 'equipo', 'ejercicios', 'comprobar', 'ia_powerbi', 'montar']:
         if os.path.exists(os.path.join(RAIZ, n + '.html')):
             m.goto(U + n + '.html'); m.wait_for_timeout(800)
             ok(not m.evaluate('document.documentElement.scrollWidth>innerWidth+1'), n + ' sin desborde en móvil')
     if CAP: m.goto(U + 'lab.html'); m.wait_for_timeout(800); m.screenshot(path=os.path.join(CAP, 'm_lab.png'))
+    # comprobador de narrativa: ejemplo y un .pbix subido
+    pg.goto(U + 'comprobar.html'); pg.click('#bEjemplo'); pg.wait_for_selector('#res:not([hidden])', timeout=15000)
+    ok('/ 10' in pg.inner_text('#res .cabeza') and pg.locator('details.pag').count() == 2, 'el comprobador valora el ejemplo MercaSur (2 páginas)')
+    pbix = os.environ.get('PBIX_PRUEBA')
+    if pbix and os.path.exists(pbix):
+        pg.set_input_files('#fPbix', pbix); pg.wait_for_function('document.querySelector("#res .cabeza")&&document.querySelector("#res .cabeza").innerText.includes("' + os.path.basename(pbix) + '")', timeout=20000)
+        ok(pg.locator('details.pag').count() >= 1, 'el comprobador lee un .pbix subido: ' + os.path.basename(pbix))
     ok(not errores, 'sin errores de consola ' + str(errores[:3]))
     b.close()
 print('RESULTADO:', 'todo correcto' if not fallos else fallos); sys.exit(1 if fallos else 0)

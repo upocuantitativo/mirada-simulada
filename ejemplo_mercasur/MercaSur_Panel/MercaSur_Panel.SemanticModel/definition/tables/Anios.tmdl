@@ -1,0 +1,13 @@
+table Anios
+	lineageTag: 53d28522-d971-5850-a15d-e58ca327fb19
+
+	column Anio
+		dataType: int64
+		lineageTag: a51e8d4f-aa05-5e67-85aa-bdb2fac672c5
+		summarizeBy: none
+		sourceColumn: [Anio]
+
+	partition Anios = calculated
+		mode: import
+		source =
+			SELECTCOLUMNS ( GENERATESERIES ( 2024, 2025, 1 ), "Anio", [Value] )

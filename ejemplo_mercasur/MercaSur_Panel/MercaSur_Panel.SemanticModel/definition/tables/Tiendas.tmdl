@@ -1,0 +1,39 @@
+table Tiendas
+	lineageTag: af4659ba-88ac-58fb-a403-5ed891756565
+
+	column id_tienda
+		dataType: string
+		lineageTag: 9ccba1df-1965-5923-9fdb-1930522f66b5
+		summarizeBy: none
+		sourceColumn: id_tienda
+
+	column tienda
+		dataType: string
+		lineageTag: 6eb3b93e-2a15-56a1-9d44-473839533d6f
+		summarizeBy: none
+		sourceColumn: tienda
+
+	column departamento
+		dataType: string
+		lineageTag: 0a87514d-9681-5861-b0b8-29740952daba
+		summarizeBy: none
+		sourceColumn: departamento
+
+	column es_nueva
+		dataType: string
+		lineageTag: 08b9cddb-03b3-5422-afb1-106b3e332863
+		summarizeBy: none
+		sourceColumn: es_nueva
+
+	partition Tiendas = m
+		mode: import
+		source =
+			let
+							Origen = Csv.Document(Binary.Decompress(Binary.FromText(
+							"bdJLjhoxEAbgPRJ38AGqJbuhJ8mSx/CYgWjERNmiUttCjhobubtHSnY5Q06Q5SxYzS5bXyxVJJYwyaopC77y/9NW7ztrnEb4+9DmhKHDo3GdBzyZ0PUB4Wi64Nt93aMOqH0LBxPoG2Zvna0tNmkG0+5db15wOJjAp4soJjBpe1fb+OaglOpDIUeFqqAcSwkfUVsUm/h2Mt9gh/FXI+Y97Tfg/HAwTcQUZqQH2vMHuCtkCeo9ATvfoNNeLO0xvjpGbg8YmiVoBmu6ZbA+kFTKQqqilKAqkrYYrEOxCOhqfzOxMU/GPMvDSFUoRR8JiT/aGoOYGhfPHS2/nRm6T9D9VSpmKJgCxbVsbGOR1j/7FvOBgUUCFlkaRaUUagxqRMKqP3ixw2M8B1qbT2wsk7HM0xDyrhhJKBUhT9gF/nvFZ0PvQD4xskrI6jpJya0qapUagTk6axqx81+wzQcG1glYZ0lIGBdlRUkqCcuANf0KxdbT2nxi4yEZD3mSMSfhQu/oGhOnQ3xtxSz+rOlNbf89aON5OHhM1uN1oIqLZamk6zzb5oU6WHrtv+bDRdgkYZMlqvglYYJr3dpDTzXE7+5AjycMRtMF/n96QX8D",
+							BinaryEncoding.Base64), Compression.Deflate), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+							Encabezados = Table.PromoteHeaders(Origen, [PromoteAllScalars=true]),
+							Tipos = Table.TransformColumnTypes(Encabezados, {{"id_tienda", type text}, {"tienda", type text}, {"departamento", type text}, {"es_nueva", type text}}, "en-US"),
+							Columnas = Table.SelectColumns(Tipos, {"id_tienda", "tienda", "departamento", "es_nueva"})
+			in
+							Columnas

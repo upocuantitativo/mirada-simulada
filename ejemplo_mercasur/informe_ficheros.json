@@ -1,0 +1,31 @@
+{
+  "base": "MercaSur_Panel/MercaSur_Panel.Report/definition/",
+  "ficheros": [
+    "pages/pages.json",
+    "pages/antes/page.json",
+    "pages/antes/visuals/ant008ddef52ee5475c/visual.json",
+    "pages/antes/visuals/ant010e8684cb434f59/visual.json",
+    "pages/antes/visuals/ant023cb6cedf621551/visual.json",
+    "pages/antes/visuals/ant03c26238d648bc5c/visual.json",
+    "pages/antes/visuals/ant04f85f394689ae54/visual.json",
+    "pages/antes/visuals/ant057a7d9d869dc35b/visual.json",
+    "pages/antes/visuals/ant06b58936b4ed575f/visual.json",
+    "pages/antes/visuals/ant072d6528c5c37e5b/visual.json",
+    "pages/antes/visuals/ant0819f0995fabad5b/visual.json",
+    "pages/antes/visuals/ant098417c8eae6765c/visual.json",
+    "pages/antes/visuals/ant10f9599a4431225a/visual.json",
+    "pages/antes/visuals/ant114a57ad5189c65e/visual.json",
+    "pages/despues/page.json",
+    "pages/despues/visuals/des00ce0cbcc52bfa52/visual.json",
+    "pages/despues/visuals/des0121cdca69daa85f/visual.json",
+    "pages/despues/visuals/des0282847af5bfd854/visual.json",
+    "pages/despues/visuals/des03c85ae48c118155/visual.json",
+    "pages/despues/visuals/des04ae2adb2c503d56/visual.json",
+    "pages/despues/visuals/des0553bf97adaa5059/visual.json",
+    "pages/despues/visuals/des0682fa3404cd2d56/visual.json",
+    "pages/despues/visuals/des07a03082b327fe50/visual.json",
+    "pages/despues/visuals/des08086e5572a9cd55/visual.json",
+    "pages/despues/visuals/des0907afea4ff3405f/visual.json",
+    "pages/despues/visuals/des10a5fd6dacaa0355/visual.json"
+  ]
+}

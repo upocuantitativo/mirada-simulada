@@ -1,0 +1,15 @@
+relationship 3ce1cc21-e6d9-5bc1-b995-e8909d777c73
+	fromColumn: Ventas.id_tienda
+	toColumn: Tiendas.id_tienda
+
+relationship bd502f1a-c325-579e-b7d2-2cb42d342219
+	fromColumn: Presupuesto.id_tienda
+	toColumn: Tiendas.id_tienda
+
+relationship 90613dc0-204c-5b6f-a06e-f917309c57d9
+	fromColumn: Ventas.Anio
+	toColumn: Anios.Anio
+
+relationship e1a4516d-2520-5b67-b1cf-bbee45d7d41d
+	fromColumn: Presupuesto.Anio
+	toColumn: Anios.Anio

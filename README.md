@@ -20,6 +20,9 @@ Haz fork y activa GitHub Pages: Settings, Pages, Deploy from a branch, `main`, `
 | `.claude/agents/`, `.claude/skills/revisar-visual/` | Equipo de agentes para Claude Code |
 | `modulo1/CRITERIOS.md` | Conceptos del Módulo 1 que aplican los agentes |
 | `ejemplo/` | Ejecución real del equipo sobre el gráfico de producción |
+| `comprobar.html`, `js/comprobar.js` | Comprueba tu panel: valora un .pbix o un proyecto .pbip con 14 reglas ligadas a `modulo1/CRITERIOS.md`, en el navegador. Prueba: `python tools/prueba_comprobador.py [fichero.pbix]` |
+| `ia_powerbi.html` | Claude y Codex en Power BI: servidor MCP oficial de Microsoft, instalación en Claude Desktop, Claude Code y Codex, y el ejemplo MercaSur |
+| `ejemplo_mercasur/` | Datos de MercaSur 360 y panel PBIP con dos páginas (Antes y Después), generado por `tools/gen_pbip_mercasur.py`; medidas comprobadas en Power BI con `tools/probar_dax_mercasur.ps1` |
 | `tools/` | Generadores y prueba de extremo a extremo |
 
 ## Base científica y créditos

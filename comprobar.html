@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Comprueba tu panel · Mirada simulada</title><link rel="stylesheet" href="css/app.css">
+<style>
+.subir{display:flex;flex-wrap:wrap;gap:10px;margin:1.2em 0 .6em}
+.zona-soltar{border:1.5px dashed #b9bbd6;border-radius:12px;padding:22px;text-align:center;color:var(--suave);transition:background-color .15s ease,border-color .15s ease}
+.zona-soltar.encima{background:var(--azul-claro);border-color:var(--azul2)}
+.resultado{margin-top:2em}
+.cabeza{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;padding:18px 20px;background:var(--panel);border-radius:12px}
+.cabeza .nota{font-size:3rem;font-weight:700;line-height:1;font-variant-numeric:tabular-nums;color:var(--azul)}
+.cabeza .nota small{font-size:1rem;color:var(--suave);font-weight:500}
+.cabeza p{margin:0}.cabeza .val{font-weight:600;font-size:1.08rem}
+.chip{display:inline-block;font-size:.76rem;font-weight:600;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.chip.cumple{background:#e3f3ee;color:var(--ok)}.chip.revisar{background:#fbf0dc;color:var(--ambar)}.chip.falla{background:#fbe5e3;color:var(--grave)}
+.acciones{padding-left:1.2em}.acciones li{margin-bottom:.9em}.acciones .ev{display:block;font-size:.88rem;color:var(--suave);margin-top:.2em}
+details.pag{border:1px solid var(--linea);border-radius:10px;padding:10px 14px;margin:.7em 0}
+details.pag summary{cursor:pointer;font-weight:600;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+details.pag td:first-child{white-space:nowrap}
+.manual label{display:flex;gap:10px;align-items:flex-start;margin:.55em 0}.manual input{margin-top:.35em;flex:none}
+.estado{min-height:1.4em;color:var(--suave);font-size:.94rem}
+</style></head>
+<body data-pagina="comprobar">
+<main class="lectura">
+<h1>Comprueba tu panel</h1>
+<p class="intro">Sube tu informe de Power BI y recibe una valoración con los criterios de narrativa del Módulo 1, y la lista de cambios por orden de importancia.</p>
+<div class="aviso">Tu fichero no sale de tu ordenador: se lee en este navegador y solo se mira cómo está construido el informe (páginas, visuales, títulos, colores, textos). Los datos no se leen.</div>
+
+<h2>1. Sube tu informe</h2>
+<p>Vale un fichero <b>.pbix</b> o la carpeta de un proyecto <b>.pbip</b> (la que contiene la carpeta <code>.Report</code>).</p>
+<div class="subir">
+  <label class="btn">Elegir fichero .pbix<input id="fPbix" type="file" accept=".pbix" hidden></label>
+  <label class="btn sec">Elegir carpeta del proyecto<input id="fCarpeta" type="file" webkitdirectory directory multiple hidden></label>
+  <button class="btn sec" id="bEjemplo" type="button">Probar con el ejemplo MercaSur</button>
+</div>
+<div class="zona-soltar" id="soltar">o arrastra aquí tu .pbix</div>
+<p class="estado" id="estado" role="status" aria-live="polite"></p>
+
+<section class="resultado" id="res" hidden></section>
+
+<h2>Qué mira y qué no</h2>
+<p>El comprobador aplica doce reglas por página y dos al informe completo. Cada una corresponde a un criterio de <a href="https://github.com/upocuantitativo/mirada-simulada/blob/main/modulo1/CRITERIOS.md" rel="noopener" target="_blank">modulo1/CRITERIOS.md</a> y pesa según su importancia: el título de acción pesa tres veces más que el texto alternativo.</p>
+<div class="tablaw"><table>
+<thead><tr><th>Criterio</th><th>Qué busca en el fichero</th><th>Peso</th></tr></thead>
+<tbody>
+<tr><td>B2.9 Título de acción</td><td>Un texto arriba con verbo o cifra, o una tarjeta con una medida de título. Una etiqueta («Dashboard de ventas») suspende.</td><td>3</td></tr>
+<tr><td>B1.8 Cifra con referencia</td><td>Medidas de comparación: año anterior, objetivo, presupuesto, comparables, desviación.</td><td>2</td></tr>
+<tr><td>B3.6 Carga visual</td><td>Hasta 6 visuales con datos, bien; de 7 a 9, revisar; 10 o más, demasiados.</td><td>2</td></tr>
+<tr><td>B3.8 Gráfico según la pregunta</td><td>Tartas, anillos, medidores y mapas de árbol.</td><td>2</td></tr>
+<tr><td>B3.9 Ejes honestos</td><td>Barras que no empiezan en cero, gráficos con dos ejes, líneas con el eje cortado.</td><td>2</td></tr>
+<tr><td>B3.7 Foco y color</td><td>Colores elegidos a mano, con gris para el contexto, frente a un color por serie sin elegir.</td><td>2</td></tr>
+<tr><td>B3.13 Etiqueta directa</td><td>Leyendas separadas del dato en gráficos con varias series.</td><td>1</td></tr>
+<tr><td>B3.14 Anotación</td><td>Un texto dentro o junto a un gráfico.</td><td>1</td></tr>
+<tr><td>B3.15 Fuente y periodo</td><td>Un texto con «Fuente» y un año o la fecha de actualización.</td><td>1</td></tr>
+<tr><td>B3.16 Cifras y nombres</td><td>Agregaciones automáticas («Suma de…») y visuales sin título propio.</td><td>1</td></tr>
+<tr><td>B3.11 Texto alternativo</td><td>Cuántos visuales lo tienen.</td><td>1</td></tr>
+<tr><td>B1.2 Explicar, no explorar</td><td>Más de tres segmentadores o una tabla de detalle grande.</td><td>1</td></tr>
+<tr><td>B2.10 Titles test · B2.12 Arquitectura</td><td>Títulos de acción en todas las páginas y páginas con nombre propio.</td><td>1</td></tr>
+</tbody></table></div>
+<p>Lo que el fichero no dice, y por eso se pregunta al final: si sabes quién decide, si la Big Idea cabe en una frase, si las cifras son correctas y si el comité encuentra el mensaje (eso lo mide el <a href="lab.html">Laboratorio</a>). Las reglas son heurísticas: detectan síntomas, no juzgan la historia. Una nota alta con datos mal calculados sigue siendo un mal informe; el panel «Antes» del ejemplo tiene un objetivo mal relacionado que ninguna regla ve.</p>
+<p class="ayuda">En Power BI Desktop, para tener la carpeta del proyecto: Archivo → Guardar como → tipo «Archivos de proyecto de Power BI (*.pbip)». Si no aparece, actívalo en Opciones → Características en versión preliminar.</p>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" integrity="sha512-XMVd28F1oH/O71fzwBnV7HucLxVwtxf26XV8P4wPk26EDxuGZ91N8bsOttmnomcCD3CS5ZMRL50H0GgOHvegtg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="js/comun.js"></script>
+<script src="js/comprobar.js"></script>
+<script src="js/comprobar_ui.js"></script>
+</body></html>

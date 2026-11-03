@@ -1,0 +1,13 @@
+id_tienda,tienda,departamento,apertura,metros_cuadrados,gerente_inicial,gerente,es_nueva
+A,Tienda A,Asunción,2019-03-15,2400,Nadia López,Raúl Duarte,no
+B,Tienda B,Central,2019-06-02,1800,Rolando Giménez,Rolando Giménez,no
+C,Tienda C,Interior,2020-01-20,1500,Marina Franco,Marina Franco,no
+D,Tienda D,Asunción,2020-05-11,2000,Óscar Benítez,Óscar Benítez,no
+E,Tienda E,Central,2020-09-01,1400,Liliana Sosa,Liliana Sosa,no
+F,Tienda F,Interior,2021-02-14,1300,Hugo Ramírez,Hugo Ramírez,no
+G,Tienda G,Asunción,2021-07-30,2100,Patricia Vera,Patricia Vera,no
+H,Tienda H,Central,2022-01-10,1200,Daniel Rojas,Daniel Rojas,no
+I,Tienda I,Interior,2022-04-25,1350,Graciela Mora,Graciela Mora,no
+J,Tienda J,Asunción,2024-07-01,1600,Andrés Cáceres,Andrés Cáceres,sí
+K,Tienda K,Central,2025-02-01,1250,Silvia Godoy,Silvia Godoy,sí
+L,Tienda L,Interior,2025-05-01,1100,Miguel Ángel Paredes,Miguel Ángel Paredes,sí

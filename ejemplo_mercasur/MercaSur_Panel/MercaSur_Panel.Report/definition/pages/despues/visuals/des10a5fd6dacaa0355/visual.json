@@ -1,0 +1,50 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
+  "name": "des10a5fd6dacaa0355",
+  "position": {
+    "x": 32,
+    "y": 636,
+    "z": 10,
+    "height": 76,
+    "width": 1216
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Lectura: en 2025 el total sube porque abren J, K y L; las nueve tiendas que ya existían venden un 1,1 % menos. En 2024-2025 ninguna tienda se aleja más de 2,5 puntos de su objetivo.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "11pt",
+                      "fontWeight": "bold",
+                      "color": "#334155"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Fuente: MercaSur 360, datos sintéticos de práctica, enero de 2024 a diciembre de 2025. «Comparables» = tiendas abiertas antes de 2024 (A a I).",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "9pt",
+                      "color": "#334155"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

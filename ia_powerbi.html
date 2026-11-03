@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Claude y Codex en Power BI · Mirada simulada</title><link rel="stylesheet" href="css/app.css">
+<style>
+figure{margin:1.2em 0 1.6em}figure img{width:100%;height:auto;border:1px solid var(--linea);border-radius:var(--r);display:block}
+figcaption{font-size:.88rem;color:var(--suave);margin-top:.45em}
+.paso{border-left:3px solid var(--azul-claro);padding:2px 0 2px 14px;margin:1em 0}
+.paso b.n{color:var(--azul)}
+.par{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:700px){.par{grid-template-columns:1fr}}
+p code,li code{overflow-wrap:anywhere}
+td.c{font-variant-numeric:tabular-nums;white-space:nowrap}
+</style></head>
+<body data-pagina="ia">
+<main class="lectura">
+<h1>Claude y Codex dentro de Power BI</h1>
+<p class="intro">Un asistente de IA puede leer y modificar el modelo de un informe de Power BI: tablas, relaciones y medidas DAX. Lo hace a través de un servidor MCP oficial de Microsoft. Aquí lo instalas en Claude Desktop, Claude Code o Codex y lo pruebas con MercaSur hasta obtener un panel.</p>
+
+<h2>Qué hace y qué no</h2>
+<p><b>MCP</b> (Model Context Protocol) es un estándar para que un asistente de IA use herramientas externas. Microsoft publica el servidor <a href="https://github.com/microsoft/powerbi-modeling-mcp" rel="noopener" target="_blank">Power BI Modeling MCP</a> (en versión preliminar). Con él, el asistente se conecta al motor de un Power BI Desktop abierto, a una carpeta de proyecto PBIP o a un modelo publicado en Fabric, y trabaja con 22 herramientas: tablas, columnas, medidas, relaciones, consultas DAX, roles, traducciones y otras.</p>
+<p><b>No crea visuales.</b> El servidor solo toca el modelo semántico. Las páginas y los gráficos se hacen a mano o se escriben como ficheros del formato de proyecto de Power BI (PBIP, con el informe en PBIR), que Claude Code o Codex pueden editar como cualquier otro fichero. El ejemplo de MercaSur usa las dos vías.</p>
+<div class="aviso cal"><b>Antes de conectar nada:</b> haz una copia del informe. El asistente puede equivocarse y aplicar cambios que no querías. Todo lo que lea del modelo (nombres, medidas y, si se lo pides, datos) se envía al proveedor de la IA: no lo uses con datos de tu empresa sin permiso. Para mirar sin tocar, arranca el servidor con <code>--readonly</code>. La primera vez el servidor pide aceptar su licencia: léela y acéptala tú.</div>
+
+<h2>Requisitos</h2>
+<ul>
+<li>Windows con <b>Power BI Desktop</b> (el servidor se conecta a su motor local).</li>
+<li><b>Node.js</b> 18 o superior, para lanzar el servidor con <code>npx</code> (<a href="https://nodejs.org" rel="noopener" target="_blank">nodejs.org</a>). Comprueba con <code>node -v</code>.</li>
+<li>Uno de estos clientes: <b>Claude Desktop</b>, <b>Claude Code</b> o <b>Codex</b> (CLI de OpenAI). También vale VS Code con GitHub Copilot y la extensión <i>Power BI Modeling MCP</i>.</li>
+</ul>
+
+<h2>Instalación</h2>
+<p>Las tres opciones arrancan el mismo servidor: <code>npx -y @microsoft/powerbi-modeling-mcp@latest --start</code>. En Windows se lanza a través de <code>cmd /c</code>, porque <code>npx</code> es un script y no un ejecutable.</p>
+
+<h3>Claude Desktop</h3>
+<ol>
+<li>Ajustes → <b>Desarrollador</b> → <b>Editar configuración</b>. Se abre <code>claude_desktop_config.json</code>.</li>
+<li>Añade el servidor (si ya hay otros en <code>mcpServers</code>, ponlo a su lado):
+<pre><code>{
+  "mcpServers": {
+    "powerbi": {
+      "command": "cmd",
+      "args": ["/c", "npx", "-y", "@microsoft/powerbi-modeling-mcp@latest", "--start"]
+    }
+  }
+}</code></pre></li>
+<li>Guarda y cierra Claude Desktop del todo (también el icono de la bandeja). Al volver a abrirlo, el conector <b>powerbi</b> aparece en el menú de herramientas.</li>
+</ol>
+<p class="ayuda">Si prefieres no depender de Node.js, instala la extensión de VS Code, busca dentro de su carpeta <code>extension\server\powerbi-modeling-mcp.exe</code> y pon esa ruta en <code>"command"</code> (con barras dobles <code>\\</code>) y <code>"args": ["--start"]</code>.</p>
+
+<h3>Claude Code</h3>
+<pre><code>claude mcp add powerbi -- cmd /c npx -y @microsoft/powerbi-modeling-mcp@latest --start
+claude mcp list</code></pre>
+<p>Dentro de una sesión, <code>/mcp</code> muestra si está conectado.</p>
+
+<h3>Codex</h3>
+<pre><code>codex mcp add powerbi -- cmd /c npx -y @microsoft/powerbi-modeling-mcp@latest --start
+codex mcp list</code></pre>
+<p>Queda guardado en <code>~/.codex/config.toml</code>, donde también puedes escribirlo a mano:</p>
+<pre><code>[mcp_servers.powerbi]
+command = "cmd"
+args = ["/c", "npx", "-y", "@microsoft/powerbi-modeling-mcp@latest", "--start"]</code></pre>
+<p>Dentro de Codex, <code>/mcp</code> muestra los servidores activos.</p>
+
+<h3>Comprobar que funciona</h3>
+<ol>
+<li>Abre en Power BI Desktop el informe con el que vas a trabajar.</li>
+<li>Pide al asistente: <i>«Conéctate a 'MercaSur_Panel' en Power BI Desktop y dime qué tablas y medidas tiene.»</i> (el nombre es el del fichero abierto).</li>
+<li>La primera vez te pedirá aceptar la licencia del servidor y, antes de cada cambio, tu confirmación.</li>
+</ol>
+
+<h2>Ejemplo: un panel de MercaSur</h2>
+<p>MercaSur 360 es la cadena de tiendas ficticia del curso: doce tiendas en Paraguay, ventas mensuales de 2024 y 2025 y un objetivo por semestre. Los tres ficheros están en <a href="https://github.com/upocuantitativo/mirada-simulada/tree/main/ejemplo_mercasur/datos" rel="noopener" target="_blank"><code>ejemplo_mercasur/datos</code></a>.</p>
+<p>La pregunta del panel: <b>¿crece el negocio o solo crece el total?</b> En 2025 las ventas suben un 17,7 %, pero tres de las doce tiendas (J, K y L) abrieron en 2024 y 2025. Si se miran solo las nueve que ya existían, las ventas bajan un 1,1 %.</p>
+
+<h3>Vía 1. El asistente construye el modelo con MCP</h3>
+<p>Abre Power BI Desktop con un informe en blanco guardado como <code>MercaSur_Panel</code>, importa los tres CSV (Inicio → Obtener datos → Texto/CSV) y pide al asistente, por turnos:</p>
+<div class="paso"><b class="n">1.</b> «Conéctate a 'MercaSur_Panel' en Power BI Desktop. Renombra las tablas a Ventas, Tiendas y Presupuesto y dime sus columnas.»</div>
+<div class="paso"><b class="n">2.</b> «En Ventas añade la columna Anio (los cuatro primeros caracteres de fecha, entero) y la columna Mes (fecha del día 1 de cada mes). En Presupuesto, Anio a partir de semestre.»</div>
+<div class="paso"><b class="n">3.</b> «Crea la tabla calculada <code>Anios = SELECTCOLUMNS ( GENERATESERIES ( 2024, 2025, 1 ), "Anio", [Value] )</code> y relaciona Ventas[Anio] y Presupuesto[Anio] con Anios[Anio], y Ventas[id_tienda] y Presupuesto[id_tienda] con Tiendas[id_tienda].»</div>
+<div class="paso"><b class="n">4.</b> «Crea en Ventas estas medidas, con formato: Ventas, Ventas último año, Ventas año anterior, Crecimiento, Ventas comparables (tiendas con es_nueva = "no"), Crecimiento comparables, Ventas tiendas nuevas, Objetivo, Cumplimiento, Desviación objetivo y Margen ponderado por ventas. El crecimiento compara siempre el último año del filtro con el anterior.»</div>
+<div class="paso"><b class="n">5.</b> «Crea la medida Titulo panel: una frase que diga cuánto suben o caen las ventas y las tiendas comparables en el último año, con "pero" si van en sentido contrario.»</div>
+<div class="paso"><b class="n">6.</b> «Ejecuta consultas DAX y dame cada medida para 2025 y sin filtro. Compáralas con esta tabla y dime cuáles no cuadran.» (pega la tabla de cifras de control).</div>
+<p>El paso 6 es el importante: el asistente escribe DAX con soltura y también se equivoca con soltura. Una medida que da un número creíble pero falso no la detecta nadie si no hay una cifra de control calculada por otro camino.</p>
+
+<h3>Cifras de control</h3>
+<p>Calculadas con Python sobre los CSV y comprobadas en el motor de Power BI Desktop (<code>tools/probar_dax_mercasur.ps1</code>: 22 de 22).</p>
+<div class="tablaw"><table>
+<thead><tr><th>Medida</th><th>Filtro</th><th>Valor</th></tr></thead>
+<tbody>
+<tr><td>Ventas</td><td>sin filtro</td><td class="c">25.610.000,06</td></tr>
+<tr><td>Ventas</td><td>2024 / 2025</td><td class="c">11.764.148,43 / 13.845.851,63</td></tr>
+<tr><td>Crecimiento</td><td>2025 o sin filtro</td><td class="c">17,7 %</td></tr>
+<tr><td>Crecimiento</td><td>2024</td><td class="c">en blanco (no hay 2023)</td></tr>
+<tr><td>Ventas comparables</td><td>2025</td><td class="c">11.049.222,28</td></tr>
+<tr><td>Crecimiento comparables</td><td>2025 o sin filtro</td><td class="c">−1,1 %</td></tr>
+<tr><td>Ventas tiendas nuevas</td><td>2025</td><td class="c">2.796.629,35</td></tr>
+<tr><td>Objetivo / Cumplimiento</td><td>2025</td><td class="c">13.897.696 / 99,6 %</td></tr>
+<tr><td>Desviación objetivo</td><td>tienda H / tienda L</td><td class="c">+2,4 % / −1,9 %</td></tr>
+<tr><td>Margen ponderado</td><td>2025 / sin filtro</td><td class="c">22,2 % / 22,4 %</td></tr>
+<tr><td>Titulo panel</td><td>2025</td><td>«En 2025 las ventas suben un 17,7 %, pero en las tiendas comparables caen un 1,1 %»</td></tr>
+</tbody></table></div>
+
+<h3>Vía 2. El asistente escribe el panel como proyecto PBIP</h3>
+<p>Para los visuales, Claude Code o Codex trabajan sobre ficheros. Activa en Power BI Desktop (Archivo → Opciones → Características en versión preliminar) el guardado como proyecto <b>.pbip</b> con informe <b>PBIR</b>, guarda el informe como proyecto y pide al asistente, desde la carpeta del proyecto, por ejemplo: <i>«En MercaSur_Panel.Report añade una página "Después" con el título dinámico arriba, cuatro tarjetas (crecimiento total, comparables, ventas de J, K y L, margen), una línea mensual de ventas totales en gris y comparables en azul, y barras de desviación frente al objetivo por tienda, ordenadas.»</i> Cierra y vuelve a abrir el .pbip para ver el resultado.</p>
+<p>El panel de este ejemplo está hecho así y lo puedes abrir: descarga el repositorio (Code → Download ZIP), abre <code>ejemplo_mercasur/MercaSur_Panel/MercaSur_Panel.pbip</code> y pulsa <b>Inicio → Actualizar</b> (los datos van dentro del proyecto). Lo genera <code>tools/gen_pbip_mercasur.py</code>.</p>
+
+<h2>Dos paneles con los mismos datos</h2>
+<p>El proyecto tiene dos páginas. La primera es el panel que suele salir cuando se pide «un dashboard de ventas», a una persona o a una IA, sin más indicaciones. La segunda aplica lo visto en el Módulo 1.</p>
+<figure><img src="ejemplo_mercasur/panel_antes.png" alt="Panel «Antes»: título genérico, tres segmentadores, tarjetas con 26 mill., 17,7 % y 22,4 %, un medidor de cumplimiento, un gráfico circular de doce tiendas, un anillo por línea, columnas por tienda y línea y una tabla de datos." loading="lazy" width="1024" height="576"><figcaption>1 · Antes. Captura de Power BI Desktop 2.159 (3-nov-2026).</figcaption></figure>
+<figure><img src="ejemplo_mercasur/panel_despues.png" alt="Panel «Después»: título «En 2025 las ventas suben un 17,7 %, pero en las tiendas comparables caen un 1,1 %», cuatro tarjetas, línea mensual de ventas totales en gris y comparables en azul, y barras de desviación frente al objetivo por tienda, de +2,4 % (H) a −1,9 % (L)." loading="lazy" width="1024" height="576"><figcaption>2 · Después. Misma fuente, mismo modelo. Captura de Power BI Desktop 2.159 (3-nov-2026).</figcaption></figure>
+<div class="tablaw"><table>
+<thead><tr><th>Criterio del Módulo 1</th><th>Antes</th><th>Después</th></tr></thead>
+<tbody>
+<tr><td>Mensaje en el título (BLUF)</td><td>«Dashboard de ventas»: no dice nada</td><td>Título con la conclusión, calculado con DAX: cambia si cambian los datos</td></tr>
+<tr><td>Comparación justa</td><td>+17,7 % sin más: el titular que engaña</td><td>Total frente a tiendas comparables, lado a lado</td></tr>
+<tr><td>Un visual por pregunta</td><td>Doce elementos sin orden de lectura</td><td>Título, cuatro cifras, dos gráficos y una lectura</td></tr>
+<tr><td>Forma adecuada</td><td>Tarta de doce porciones, anillo, medidor</td><td>Línea para el tiempo, barras ordenadas para comparar tiendas</td></tr>
+<tr><td>Escala honesta</td><td>Cumplimiento en un medidor de 0 a 100 %: todo parece igual</td><td>Desviación frente al objetivo desde cero: se ve quién se aleja</td></tr>
+<tr><td>Color con intención</td><td>Un color por categoría, sin significado</td><td>Gris para el contexto y un solo azul para lo que importa</td></tr>
+<tr><td>Cifras legibles (B3.16)</td><td>«26 mill.» bajo «Sum of ventas»: suma los dos años sin decirlo</td><td>«2,80 mill.» del último año, con la unidad en el título del visual</td></tr>
+<tr><td>Etiqueta directa y anotación (B3.13, B3.14)</td><td>Leyendas lejanas, ningún texto junto a los datos</td><td>Colores explicados en el título y una nota en el punto donde abren las tiendas nuevas</td></tr>
+<tr><td>Texto alternativo (B3.11)</td><td>Ninguno</td><td>En cada visual, con la conclusión</td></tr>
+<tr><td>Fuente, periodo y definiciones</td><td>Ninguna</td><td>Pie con fuente, periodo y qué es «comparable»</td></tr>
+<tr><td>Datos correctos</td><td>La tabla repite el objetivo de la tienda en cada línea y da cumplimientos de entre el 26,5 % y el 43,7 %</td><td>El objetivo solo se cruza por tienda y año</td></tr>
+</tbody></table></div>
+<p>El último punto no es de diseño: en el panel «Antes» la tabla cruza ventas por línea con un objetivo que no está relacionado con la línea, y Power BI no avisa. Pásale al equipo de agentes una captura de cada panel y comprueba si lo detecta: <a href="equipo.html">Equipo de agentes</a>.</p>
+<p>Los dos paneles se pueden valorar en <a href="comprobar.html">Comprueba tu panel</a> (botón «Probar con el ejemplo»): «Antes» saca 3,9 y «Después» 10, con las reglas de esa pestaña. Sube allí también tu propio .pbix.</p>
+
+<h2>Qué se ha comprobado y qué no</h2>
+<ul>
+<li>El servidor MCP arranca en Windows con el comando de esta página y ofrece sus 22 herramientas (3-nov-2026, versión publicada en npm ese día).</li>
+<li>Las medidas, relaciones y consultas de Power Query del ejemplo funcionan en Power BI Desktop 2.159: 22 de 22 cifras de control.</li>
+<li>El proyecto PBIP abre en Power BI Desktop y muestra las dos páginas de las capturas.</li>
+<li><b>No</b> se ha grabado aquí una conversación completa con Claude Desktop o Codex usando el servidor: requiere aceptar su licencia con tu cuenta. Las respuestas del asistente variarán; por eso el paso 6 compara con cifras fijas.</li>
+</ul>
+<p class="ayuda">Fuentes: README de <a href="https://github.com/microsoft/powerbi-modeling-mcp" rel="noopener" target="_blank">microsoft/powerbi-modeling-mcp</a>; ayuda de <code>claude mcp add --help</code> (Claude Code 2.1) y <code>codex mcp add --help</code> (Codex CLI 0.163).</p>
+</main>
+<script src="js/comun.js"></script>
+</body></html>

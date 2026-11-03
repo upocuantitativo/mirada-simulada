@@ -1,0 +1,9 @@
+model Model
+	culture: es-ES
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
+
+ref table Ventas
+ref table Tiendas
+ref table Presupuesto
+ref table Anios
