@@ -20,6 +20,8 @@ Tarea, solo para los cambios aprobados:
 Reglas:
 - Si `salida/3_auditoria.md` tiene una ALERTA sin resolver en `salida/decisiones.md`, para y dilo. No escribas pasos.
 - No afirmes que has ejecutado nada en Power BI: entregas instrucciones para que las aplique una persona.
+- Recuentos y sumas que pueden dar 0: envuélvelos en `COALESCE ( …, 0 )`. Un `COUNTROWS` sobre una tabla vacía devuelve un valor en blanco y la tarjeta muestra «(En blanco)».
+- Al final, añade una tabla `## Cifras de control` con `| Medida | Estado de filtro | Valor esperado |`, para que `tools/verificar_powerbi.py` la compare con los datos.
 - Nombres de tablas y columnas: usa los del brief. Si no están, escribe `[NOMBRE PENDIENTE]`.
 
 Escribe `salida/5_powerbi.md` con: lista de pasos numerada, medidas DAX con cifra de control, textos alternativos y lista de comprobación final.

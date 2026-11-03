@@ -1,6 +1,8 @@
 # Despliegue en Power BI: «Evolución de la producción»
 
-No hay fichero .pbix. Este documento son instrucciones para que las aplique una persona; no se ha ejecutado nada en Power BI.
+No hay fichero .pbix. Este documento son instrucciones para que las aplique una persona.
+
+Comprobación (3-nov-2026): el modelo (tablas `Produccion` y `Calendario`) y las nueve medidas se cargaron en el motor de Power BI Desktop 2.159 y se evaluaron con consultas DAX. Las cifras de control y el título dinámico salieron como se indica; «Anios con caida» daba en blanco y se corrigió en el paso 14. No se comprobaron con el motor la importación del CSV en Power Query, la relación entre tablas, los visuales, el formato ni la publicación.
 
 La ALERTA de la auditoría sobre «+46» está resuelta en `decisiones.md` (B1.8): el mensaje es +175 unidades (210 − 35), comprobado en `produccion.csv`. Se escriben, por tanto, los pasos. Se consideran aprobados los cambios de los hallazgos aceptados de `4_mejora.md`.
 
@@ -26,7 +28,7 @@ Crear en la tabla `Produccion`. Cifras de control con todos los años selecciona
 11. `Veces que se multiplica = DIVIDE ( [Unidades ultimo anio], [Unidades primer anio] )`. Control: 6,0 (210 / 35).
 12. `Aumento anual = SUM ( Produccion[Unidades] ) - CALCULATE ( SUM ( Produccion[Unidades] ), Produccion[Anio] = MAX ( Produccion[Anio] ) - 1 )`, pensada para un solo año en contexto. Control: 2025 da 20 (210 − 190); 2020 da 10 (85 − 75); 2021 da 35 (120 − 85).
 13. `Aumento anual medio = DIVIDE ( [Aumento acumulado], DISTINCTCOUNT ( Produccion[Anio] ) - 1 )`. Control: 21,875 (175 / 8), que se muestra como 21,9.
-14. `Anios con caida = COUNTROWS ( FILTER ( VALUES ( Produccion[Anio] ), Produccion[Anio] > MIN ( Produccion[Anio] ) && [Aumento anual] < 0 ) )`. Control: 0 (las variaciones 2018 a 2025 son +15, +25, +10, +35, +20, +20, +30, +20).
+14. `Anios con caida = COALESCE ( COUNTROWS ( FILTER ( VALUES ( Produccion[Anio] ), Produccion[Anio] > MIN ( Produccion[Anio] ) && [Aumento anual] < 0 ) ), 0 )`. Sin `COALESCE`, `COUNTROWS` de una tabla vacía devuelve un valor en blanco y la tarjeta muestra «(En blanco)» en vez de 0 (error detectado al ejecutar la medida en Power BI Desktop). Control: 0 (las variaciones 2018 a 2025 son +15, +25, +10, +35, +20, +20, +30, +20).
 
 ### Visuales
 15. Página 1 «Crecimiento acumulado». Tarjeta con `Aumento acumulado`. Formato: Valor de llamada con fuente 40 pt y el color de acento único; Etiqueta de categoría «unidades entre 2017 y 2025»; título del visual desactivado (el título va en el cuadro de texto de la página). Posición: arriba a la izquierda, junto al título.
