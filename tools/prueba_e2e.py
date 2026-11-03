@@ -43,7 +43,7 @@ with sync_playwright() as p:
     json.dump(ej, open(os.path.join(RAIZ, 'ejemplo', 'entrada', 'informe_mirada.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
     # subida propia y dibujo de zona
     pg.set_input_files('#fichero', os.path.join(RAIZ, 'casos', 'web_antes.png')); pg.wait_for_timeout(600)
-    bx = pg.locator('#base').bounding_box(); pg.mouse.move(bx['x'] + 40, bx['y'] + 40); pg.mouse.down(); pg.mouse.move(bx['x'] + 300, bx['y'] + 140, steps=4); pg.mouse.up()
+    pg.locator('#base').scroll_into_view_if_needed(); bx = pg.locator('#base').bounding_box(); pg.mouse.move(bx['x'] + 40, bx['y'] + 40); pg.mouse.down(); pg.mouse.move(bx['x'] + 300, bx['y'] + 140, steps=4); pg.mouse.up()
     ok(pg.evaluate('__lab.aois.length') == 1, 'se dibuja una zona sobre captura propia')
     for n in ['teoria', 'equipo', 'ejercicios', 'montar', 'centro']:
         if os.path.exists(os.path.join(RAIZ, n + '.html')):

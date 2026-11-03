@@ -64,7 +64,8 @@ table{border-collapse:collapse;width:100%;font-size:.93rem}th{text-align:left;fo
 .lab{display:grid;grid-template-columns:292px minmax(0,1fr) 340px;align-items:start;min-height:calc(100dvh - 58px)}
 .lab>aside{padding:16px;border-right:1px solid var(--linea);min-width:0}.lab>aside.der{border-right:0;border-left:1px solid var(--linea)}
 .lab h2{font-size:.98rem;margin:1.25em 0 .55em;font-weight:600}.lab aside h2:first-child{margin-top:0}
-.escenario{padding:14px 16px;min-width:0}
+.escenario{padding:14px 16px;min-width:0;position:sticky;top:58px}
+@media(max-width:1180px){.escenario{position:static}}
 .lienzo{position:relative;background:#eceef4;border-radius:6px;line-height:0;overflow:hidden;touch-action:none}
 .lienzo canvas{width:100%;height:auto;display:block}.lienzo .capa{position:absolute;inset:0;height:100%}
 .lienzo.dibuja{cursor:crosshair}
