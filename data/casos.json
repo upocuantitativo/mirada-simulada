@@ -1,0 +1,830 @@
+[
+{
+"id": "grafico_antes",
+"nombre": "Gráfico: producción (antes)",
+"clase": "grafico",
+"contexto": "Toda la plantilla de la empresa ve este gráfico en el informe anual.",
+"ancho": 1280,
+"alto": 800,
+"imagen": "casos/grafico_antes.png",
+"aois": [
+{
+"id": "marca",
+"tipo": "decoracion",
+"nombre": "Banda «Aplicando»",
+"mensaje": false,
+"orden": 0,
+"para": [],
+"x": 0,
+"y": 0,
+"w": 1,
+"h": 0.0925
+},
+{
+"id": "titulo",
+"tipo": "titulo",
+"nombre": "Título: Evolución de la producción",
+"mensaje": false,
+"orden": 1,
+"para": [
+"direccion",
+"operaciones"
+],
+"x": 0.0359,
+"y": 0.12,
+"w": 0.4589,
+"h": 0.06
+},
+{
+"id": "serie",
+"tipo": "grafico",
+"nombre": "Serie anual 2017-2025",
+"mensaje": false,
+"orden": 2,
+"para": [
+"comercial",
+"analista"
+],
+"x": 0.0313,
+"y": 0.19,
+"w": 0.9375,
+"h": 0.5425
+},
+{
+"id": "kpi",
+"tipo": "kpi",
+"nombre": "Mensaje: Crecimiento sostenido +46",
+"mensaje": true,
+"orden": 3,
+"para": [
+"direccion",
+"finanzas"
+],
+"x": 0.0359,
+"y": 0.7525,
+"w": 0.9281,
+"h": 0.1175
+},
+{
+"id": "pie",
+"tipo": "texto",
+"nombre": "Nota: unidades",
+"mensaje": false,
+"orden": 0,
+"para": [
+"analista"
+],
+"x": 0.0359,
+"y": 0.89,
+"w": 0.9281,
+"h": 0.0213
+}
+]
+},
+{
+"id": "grafico_despues",
+"nombre": "Gráfico: producción (después)",
+"clase": "grafico",
+"contexto": "Rediseño del gráfico anterior.",
+"ancho": 1280,
+"alto": 800,
+"imagen": "casos/grafico_despues.png",
+"aois": [
+{
+"id": "titulo",
+"tipo": "titulo",
+"nombre": "Título con el mensaje: +175 unidades",
+"mensaje": true,
+"orden": 1,
+"para": [
+"direccion",
+"finanzas",
+"operaciones"
+],
+"x": 0.0375,
+"y": 0.0425,
+"w": 0.9219,
+"h": 0.0551
+},
+{
+"id": "sub",
+"tipo": "texto",
+"nombre": "Subtítulo: de 35 a 210",
+"mensaje": false,
+"orden": 2,
+"para": [
+"analista"
+],
+"x": 0.0375,
+"y": 0.1076,
+"w": 0.925,
+"h": 0.03
+},
+{
+"id": "serie",
+"tipo": "grafico",
+"nombre": "Serie anual 2017-2025",
+"mensaje": false,
+"orden": 3,
+"para": [
+"comercial",
+"analista"
+],
+"x": 0.0375,
+"y": 0.1501,
+"w": 0.925,
+"h": 0.68
+},
+{
+"id": "nota",
+"tipo": "anotacion",
+"nombre": "Anotación: 2025",
+"mensaje": false,
+"orden": 0,
+"para": [
+"direccion",
+"comercial"
+],
+"x": 0.6656,
+"y": 0.1651,
+"w": 0.2031,
+"h": 0.0552
+},
+{
+"id": "fuente",
+"tipo": "texto",
+"nombre": "Fuente y unidad",
+"mensaje": false,
+"orden": 0,
+"para": [
+"analista"
+],
+"x": 0.0375,
+"y": 0.9487,
+"w": 0.3172,
+"h": 0.0213
+}
+]
+},
+{
+"id": "panel_antes",
+"nombre": "Panel: Road Bikes (antes)",
+"clase": "panel",
+"contexto": "Panel que se lleva al comité para decidir qué hacer con Road Bikes.",
+"ancho": 1280,
+"alto": 800,
+"imagen": "casos/panel_antes.png",
+"aois": [
+{
+"id": "logo",
+"tipo": "decoracion",
+"nombre": "Logotipo con degradado",
+"mensaje": false,
+"orden": 0,
+"para": [],
+"x": 0.0109,
+"y": 0.0175,
+"w": 0.1799,
+"h": 0.0625
+},
+{
+"id": "titulo",
+"tipo": "titulo",
+"nombre": "Título: Cuadro de mando de ventas",
+"mensaje": false,
+"orden": 1,
+"para": [
+"direccion"
+],
+"x": 0.2018,
+"y": 0.0288,
+"w": 0.2395,
+"h": 0.04
+},
+{
+"id": "filtros",
+"tipo": "filtro",
+"nombre": "Filtros de año, canal, región y línea",
+"mensaje": false,
+"orden": 0,
+"para": [
+"analista"
+],
+"x": 0.6933,
+"y": 0.0294,
+"w": 0.2958,
+"h": 0.0387
+},
+{
+"id": "k1",
+"tipo": "kpi",
+"nombre": "KPI: +0,6 % con J, K y L incluidos",
+"mensaje": false,
+"orden": 0,
+"para": [
+"finanzas",
+"analista"
+],
+"x": 0.0109,
+"y": 0.0925,
+"w": 0.1578,
+"h": 0.11
+},
+{
+"id": "k2",
+"tipo": "kpi",
+"nombre": "KPI: −17,5 % atribuido a toda la línea",
+"mensaje": false,
+"orden": 2,
+"para": [
+"direccion",
+"comercial"
+],
+"x": 0.175,
+"y": 0.0925,
+"w": 0.1578,
+"h": 0.11
+},
+{
+"id": "k3",
+"tipo": "kpi",
+"nombre": "KPI: Pedidos",
+"mensaje": false,
+"orden": 0,
+"para": [],
+"x": 0.3391,
+"y": 0.0925,
+"w": 0.1578,
+"h": 0.11
+},
+{
+"id": "k4",
+"tipo": "kpi",
+"nombre": "KPI: Distribuidores",
+"mensaje": false,
+"orden": 0,
+"para": [],
+"x": 0.5031,
+"y": 0.0925,
+"w": 0.1578,
+"h": 0.11
+},
+{
+"id": "k5",
+"tipo": "kpi",
+"nombre": "KPI: NPS",
+"mensaje": false,
+"orden": 0,
+"para": [],
+"x": 0.6672,
+"y": 0.0925,
+"w": 0.1578,
+"h": 0.11
+},
+{
+"id": "k6",
+"tipo": "kpi",
+"nombre": "KPI: Margen",
+"mensaje": false,
+"orden": 0,
+"para": [
+"finanzas"
+],
+"x": 0.8313,
+"y": 0.0925,
+"w": 0.1578,
+"h": 0.11
+},
+{
+"id": "barras",
+"tipo": "grafico",
+"nombre": "Barras por distribuidor con nueve colores",
+"mensaje": false,
+"orden": 3,
+"para": [
+"comercial",
+"analista"
+],
+"x": 0.0109,
+"y": 0.2125,
+"w": 0.4097,
+"h": 0.6837
+},
+{
+"id": "tarta",
+"tipo": "grafico",
+"nombre": "Anillo: ventas por línea",
+"mensaje": false,
+"orden": 0,
+"para": [
+"finanzas"
+],
+"x": 0.4268,
+"y": 0.2125,
+"w": 0.2634,
+"h": 0.6837
+},
+{
+"id": "ley",
+"tipo": "leyenda",
+"nombre": "Leyenda del anillo",
+"mensaje": false,
+"orden": 0,
+"para": [
+"analista"
+],
+"x": 0.4339,
+"y": 0.66,
+"w": 0.2493,
+"h": 0.02
+},
+{
+"id": "tabla",
+"tipo": "tabla",
+"nombre": "Tabla por distribuidor",
+"mensaje": false,
+"orden": 0,
+"para": [
+"finanzas",
+"analista"
+],
+"x": 0.6964,
+"y": 0.2125,
+"w": 0.2926,
+"h": 0.6837
+},
+{
+"id": "nota",
+"tipo": "accion",
+"nombre": "Nota al pie: propuesta de piloto",
+"mensaje": true,
+"orden": 4,
+"para": [
+"direccion",
+"comercial",
+"operaciones"
+],
+"x": 0.0109,
+"y": 0.9063,
+"w": 0.9781,
+"h": 0.0187
+}
+]
+},
+{
+"id": "panel_despues",
+"nombre": "Panel: Road Bikes (después)",
+"clase": "panel",
+"contexto": "Rediseño del panel para el comité.",
+"ancho": 1280,
+"alto": 800,
+"imagen": "casos/panel_despues.png",
+"aois": [
+{
+"id": "titulo",
+"tipo": "titulo",
+"nombre": "Título BLUF: recuperar 4 distribuidores",
+"mensaje": true,
+"orden": 1,
+"para": [
+"direccion",
+"comercial",
+"operaciones"
+],
+"x": 0.0344,
+"y": 0.0375,
+"w": 0.8828,
+"h": 0.0487
+},
+{
+"id": "sub",
+"tipo": "texto",
+"nombre": "Subtítulo: −10,4 % en comparables",
+"mensaje": false,
+"orden": 2,
+"para": [
+"finanzas",
+"analista"
+],
+"x": 0.0344,
+"y": 0.0937,
+"w": 0.9313,
+"h": 0.0262
+},
+{
+"id": "k1",
+"tipo": "kpi",
+"nombre": "KPI: −347 k USD",
+"mensaje": false,
+"orden": 3,
+"para": [
+"direccion",
+"finanzas"
+],
+"x": 0.0344,
+"y": 0.1399,
+"w": 0.2578,
+"h": 0.1313
+},
+{
+"id": "k2",
+"tipo": "kpi",
+"nombre": "KPI: 64 % en cuatro",
+"mensaje": false,
+"orden": 0,
+"para": [
+"direccion",
+"comercial"
+],
+"x": 0.0344,
+"y": 0.2862,
+"w": 0.2578,
+"h": 0.1313
+},
+{
+"id": "k3",
+"tipo": "kpi",
+"nombre": "KPI: umbral del piloto",
+"mensaje": false,
+"orden": 0,
+"para": [
+"finanzas"
+],
+"x": 0.0344,
+"y": 0.4324,
+"w": 0.2578,
+"h": 0.1313
+},
+{
+"id": "barras",
+"tipo": "grafico",
+"nombre": "Pérdida por distribuidor, cuatro en rojo",
+"mensaje": false,
+"orden": 4,
+"para": [
+"comercial",
+"analista"
+],
+"x": 0.3187,
+"y": 0.1399,
+"w": 0.6469,
+"h": 0.49
+},
+{
+"id": "nota",
+"tipo": "anotacion",
+"nombre": "Anotación: el resto también cae",
+"mensaje": false,
+"orden": 0,
+"para": [
+"direccion",
+"comercial"
+],
+"x": 0.6484,
+"y": 0.55,
+"w": 0.25,
+"h": 0.0552
+},
+{
+"id": "peticion",
+"tipo": "accion",
+"nombre": "Petición: aprobar el piloto",
+"mensaje": true,
+"orden": 5,
+"para": [
+"direccion",
+"comercial",
+"operaciones"
+],
+"x": 0.0344,
+"y": 0.8562,
+"w": 0.9313,
+"h": 0.0712
+},
+{
+"id": "fuente",
+"tipo": "texto",
+"nombre": "Método y exclusiones",
+"mensaje": false,
+"orden": 0,
+"para": [
+"analista",
+"finanzas"
+],
+"x": 0.0344,
+"y": 0.9525,
+"w": 0.6181,
+"h": 0.02
+}
+]
+},
+{
+"id": "informe_antes",
+"nombre": "Informe: seguimiento Road Bikes",
+"clase": "informe",
+"contexto": "Informe de una página que debe acabar en una aprobación.",
+"ancho": 1000,
+"alto": 1280,
+"imagen": "casos/informe_antes.png",
+"aois": [
+{
+"id": "logo",
+"tipo": "decoracion",
+"nombre": "Membrete",
+"mensaje": false,
+"orden": 0,
+"para": [],
+"x": 0.06,
+"y": 0.0375,
+"w": 0.3547,
+"h": 0.0234
+},
+{
+"id": "fecha",
+"tipo": "texto",
+"nombre": "Referencia y fecha",
+"mensaje": false,
+"orden": 0,
+"para": [],
+"x": 0.8296,
+"y": 0.0404,
+"w": 0.1104,
+"h": 0.0176
+},
+{
+"id": "titulo",
+"tipo": "titulo",
+"nombre": "Título: Informe de seguimiento",
+"mensaje": false,
+"orden": 1,
+"para": [
+"direccion",
+"finanzas"
+],
+"x": 0.06,
+"y": 0.0867,
+"w": 0.88,
+"h": 0.0316
+},
+{
+"id": "h1",
+"tipo": "titulo",
+"nombre": "Epígrafe: Introducción",
+"mensaje": false,
+"orden": 0,
+"para": [],
+"x": 0.06,
+"y": 0.1293,
+"w": 0.88,
+"h": 0.0211
+},
+{
+"id": "intro",
+"tipo": "texto",
+"nombre": "Introducción extensa",
+"mensaje": false,
+"orden": 0,
+"para": [
+"analista"
+],
+"x": 0.06,
+"y": 0.1535,
+"w": 0.88,
+"h": 0.0879
+},
+{
+"id": "h2",
+"tipo": "titulo",
+"nombre": "Epígrafe: Análisis",
+"mensaje": false,
+"orden": 0,
+"para": [],
+"x": 0.06,
+"y": 0.2523,
+"w": 0.88,
+"h": 0.0211
+},
+{
+"id": "ana",
+"tipo": "texto",
+"nombre": "Análisis extenso",
+"mensaje": false,
+"orden": 0,
+"para": [
+"analista",
+"finanzas"
+],
+"x": 0.06,
+"y": 0.2766,
+"w": 0.88,
+"h": 0.1406
+},
+{
+"id": "tabla",
+"tipo": "tabla",
+"nombre": "Tabla por distribuidor",
+"mensaje": false,
+"orden": 2,
+"para": [
+"finanzas",
+"analista"
+],
+"x": 0.06,
+"y": 0.4234,
+"w": 0.88,
+"h": 0.2137
+},
+{
+"id": "h3",
+"tipo": "titulo",
+"nombre": "Epígrafe: Otras consideraciones",
+"mensaje": false,
+"orden": 0,
+"para": [],
+"x": 0.06,
+"y": 0.648,
+"w": 0.88,
+"h": 0.0211
+},
+{
+"id": "otras",
+"tipo": "texto",
+"nombre": "Otras consideraciones",
+"mensaje": false,
+"orden": 0,
+"para": [
+"comercial"
+],
+"x": 0.06,
+"y": 0.6723,
+"w": 0.88,
+"h": 0.0527
+},
+{
+"id": "h4",
+"tipo": "titulo",
+"nombre": "Epígrafe: Conclusiones",
+"mensaje": false,
+"orden": 0,
+"para": [],
+"x": 0.06,
+"y": 0.7359,
+"w": 0.88,
+"h": 0.0211
+},
+{
+"id": "concl",
+"tipo": "accion",
+"nombre": "Conclusión final: aprobar piloto, en la última línea",
+"mensaje": true,
+"orden": 3,
+"para": [
+"direccion",
+"finanzas",
+"comercial",
+"operaciones"
+],
+"x": 0.06,
+"y": 0.7602,
+"w": 0.88,
+"h": 0.0352
+},
+{
+"id": "fuente",
+"tipo": "texto",
+"nombre": "Fuente",
+"mensaje": false,
+"orden": 0,
+"para": [
+"analista"
+],
+"x": 0.06,
+"y": 0.8016,
+"w": 0.88,
+"h": 0.0141
+}
+]
+},
+{
+"id": "web_antes",
+"nombre": "Web: portal de distribuidores",
+"clase": "web",
+"contexto": "Portal desde el que se avisa a los distribuidores de la revisión.",
+"ancho": 1280,
+"alto": 800,
+"imagen": "casos/web_antes.png",
+"aois": [
+{
+"id": "nav",
+"tipo": "filtro",
+"nombre": "Menú superior",
+"mensaje": false,
+"orden": 0,
+"para": [
+"analista"
+],
+"x": 0,
+"y": 0,
+"w": 1,
+"h": 0.0775
+},
+{
+"id": "hero",
+"tipo": "decoracion",
+"nombre": "Banner promocional",
+"mensaje": false,
+"orden": 0,
+"para": [],
+"x": 0,
+"y": 0.0775,
+"w": 1,
+"h": 0.4125
+},
+{
+"id": "t1",
+"tipo": "kpi",
+"nombre": "Tarjeta: Formación",
+"mensaje": false,
+"orden": 0,
+"para": [],
+"x": 0.0281,
+"y": 0.515,
+"w": 0.2266,
+"h": 0.1875
+},
+{
+"id": "t2",
+"tipo": "kpi",
+"nombre": "Tarjeta: Catálogo",
+"mensaje": false,
+"orden": 0,
+"para": [
+"comercial"
+],
+"x": 0.2672,
+"y": 0.515,
+"w": 0.2266,
+"h": 0.1875
+},
+{
+"id": "t3",
+"tipo": "kpi",
+"nombre": "Tarjeta: Pedidos",
+"mensaje": false,
+"orden": 0,
+"para": [
+"operaciones"
+],
+"x": 0.5062,
+"y": 0.515,
+"w": 0.2266,
+"h": 0.1875
+},
+{
+"id": "t4",
+"tipo": "kpi",
+"nombre": "Tarjeta: Promociones",
+"mensaje": false,
+"orden": 0,
+"para": [
+"comercial"
+],
+"x": 0.7453,
+"y": 0.515,
+"w": 0.2266,
+"h": 0.1875
+},
+{
+"id": "aviso",
+"tipo": "accion",
+"nombre": "Aviso: revisión de Road Bikes en C, F, H e I",
+"mensaje": true,
+"orden": 1,
+"para": [
+"direccion",
+"comercial",
+"operaciones",
+"finanzas"
+],
+"x": 0,
+"y": 0.7275,
+"w": 1,
+"h": 0.02
+},
+{
+"id": "pie",
+"tipo": "texto",
+"nombre": "Pie legal",
+"mensaje": false,
+"orden": 0,
+"para": [
+"analista"
+],
+"x": 0,
+"y": 0.95,
+"w": 1,
+"h": 0.05
+}
+]
+}
+]

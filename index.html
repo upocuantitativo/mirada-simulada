@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mirada simulada</title><meta name="description" content="Laboratorio de atención simulada de la microcredencial de visualización y narrativa de datos con Power BI.">
+<link rel="stylesheet" href="css/app.css"></head>
+<body>
+<main class="acceso">
+  <section class="vis">
+    <h1>¿La mirada encuentra tu mensaje?</h1>
+    <p>Treinta personas simuladas miran el mismo panel. Cada audiencia busca algo distinto.</p>
+    <canvas id="demo" width="1280" height="800" role="img" aria-label="Panel de ventas con el mapa de calor de atención simulada superpuesto"></canvas>
+    <p class="leye">Datos simulados con un modelo didáctico. No es un registro ocular real.</p>
+  </section>
+  <section class="form">
+    <h2 style="margin-bottom:.4em">Entrar al laboratorio</h2>
+    <p class="ayuda" style="margin-bottom:1.3em">Microcredencial en visualización y narrativa de datos con Power BI. UPO y FP-UNA.</p>
+    <form id="f" novalidate>
+      <div class="campo"><label for="nombre">Nombre y apellidos</label><input id="nombre" type="text" autocomplete="name" required></div>
+      <div class="campo"><label for="correo">Correo del curso</label><input id="correo" type="email" autocomplete="email" required><span class="ayuda">Aparece en tus informes, para que tu docente los identifique.</span></div>
+      <div class="campo"><label for="codigo">Código de acceso</label><input id="codigo" type="text" autocomplete="off" required><span class="ayuda">Te lo da tu docente en clase.</span></div>
+      <p class="error" id="err" role="alert"></p>
+      <button class="btn" type="submit">Entrar</button>
+    </form>
+    <p class="ayuda" style="margin-top:1.4em">Tus datos y tus imágenes se quedan en este navegador. Esta web no los envía a ningún servidor.</p>
+  </section>
+</main>
+<script src="js/comun.js"></script><script src="js/motor.js"></script><script src="js/pintar.js"></script>
+<script>
+(async function () {
+  const destino = new URLSearchParams(location.search).get('volver') || 'centro.html';
+  const seguro = /^[a-z]+\.html(\?[a-zA-Z0-9=&_]*)?$/.test(destino) ? destino : 'centro.html';
+  if (Acceso.sesion()) { location.replace(seguro); return; }
+  document.getElementById('f').addEventListener('submit', e => {
+    e.preventDefault();
+    const n = nombre.value.trim(), c = correo.value.trim(), err = document.getElementById('err');
+    if (n.length < 3) { err.textContent = 'Escribe tu nombre y apellidos.'; nombre.focus(); return; }
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(c)) { err.textContent = 'Revisa el correo: falta algo.'; correo.focus(); return; }
+    if (!Acceso.entrar(n, c, codigo.value)) { err.textContent = 'Ese código no es el del curso. Compruébalo con tu docente.'; codigo.focus(); return; }
+    location.href = seguro;
+  });
+  const cv = document.getElementById('demo'), g = cv.getContext('2d');
+  const casos = await (await fetch('data/casos.json')).json(), c = casos.find(x => x.id === 'panel_antes');
+  const im = await Pintar.cargar(c.imagen), mapa = Motor.saliencia(im.datos, im.w, im.h);
+  const obs = Motor.simularSinc({ mapa, aois: c.aois, comite: { direccion: 8, comercial: 6, finanzas: 6, analista: 5, operaciones: 5 }, semilla: 2026 });
+  const W = 240, H = 150, reducir = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function pinta(ms) {
+    g.drawImage(im.lienzo, 0, 0, 1280, 800);
+    const parcial = obs.map(o => ({ fijaciones: o.fijaciones.filter(f => f.t <= ms) }));
+    Pintar.calor(g, Motor.mapaAtencion(parcial, W, H), W, H, 1280, 800);
+  }
+  if (reducir) { pinta(10000); return; }
+  const t0 = performance.now();
+  (function paso(t) { const ms = (t - t0) * 2.5; pinta(ms); if (ms < 10000) requestAnimationFrame(paso); })(t0);
+})();
+</script>
+</body></html>

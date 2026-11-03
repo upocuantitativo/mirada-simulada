@@ -1,0 +1,621 @@
+{
+ "aviso": "Datos simulados con un modelo didáctico. No es un registro ocular de personas reales.",
+ "motor": "Mirada simulada 1.0",
+ "autor": "Docente (ejemplo)",
+ "correo": "",
+ "fecha": "2026-11-03",
+ "caso": "Gráfico: producción (antes)",
+ "huella_imagen": "4f99a7ff",
+ "semilla": 2026,
+ "comite": {
+  "direccion": 10,
+  "comercial": 5,
+  "finanzas": 8,
+  "analista": 2,
+  "operaciones": 5
+ },
+ "instrumento": null,
+ "zonas_definidas": [
+  {
+   "id": "marca",
+   "nombre": "Banda «Aplicando»",
+   "tipo": "decoracion",
+   "mensaje": false,
+   "orden": 0,
+   "para": [],
+   "caja": [
+    0,
+    0,
+    1,
+    0.0925
+   ]
+  },
+  {
+   "id": "titulo",
+   "nombre": "Título: Evolución de la producción",
+   "tipo": "titulo",
+   "mensaje": false,
+   "orden": 1,
+   "para": [
+    "direccion",
+    "operaciones"
+   ],
+   "caja": [
+    0.0359,
+    0.12,
+    0.4589,
+    0.06
+   ]
+  },
+  {
+   "id": "serie",
+   "nombre": "Serie anual 2017-2025",
+   "tipo": "grafico",
+   "mensaje": false,
+   "orden": 2,
+   "para": [
+    "comercial",
+    "analista"
+   ],
+   "caja": [
+    0.0313,
+    0.19,
+    0.9375,
+    0.5425
+   ]
+  },
+  {
+   "id": "kpi",
+   "nombre": "Mensaje: Crecimiento sostenido +46",
+   "tipo": "kpi",
+   "mensaje": true,
+   "orden": 3,
+   "para": [
+    "direccion",
+    "finanzas"
+   ],
+   "caja": [
+    0.0359,
+    0.7525,
+    0.9281,
+    0.1175
+   ]
+  },
+  {
+   "id": "pie",
+   "nombre": "Nota: unidades",
+   "tipo": "texto",
+   "mensaje": false,
+   "orden": 0,
+   "para": [
+    "analista"
+   ],
+   "caja": [
+    0.0359,
+    0.89,
+    0.9281,
+    0.0213
+   ]
+  }
+ ],
+ "global": {
+  "observadores": 30,
+  "fijaciones_por_persona": 61.867,
+  "zonas": [
+   {
+    "id": "marca",
+    "nombre": "Banda «Aplicando»",
+    "tipo": "decoracion",
+    "mensaje": false,
+    "vieron": 0.967,
+    "ic95": [
+     0.833,
+     0.994
+    ],
+    "ttff_ms": 2667,
+    "tiempo_pct": 0.071,
+    "entradas": 4
+   },
+   {
+    "id": "titulo",
+    "nombre": "Título: Evolución de la producción",
+    "tipo": "titulo",
+    "mensaje": false,
+    "vieron": 1,
+    "ic95": [
+     0.886,
+     1
+    ],
+    "ttff_ms": 129.5,
+    "tiempo_pct": 0.412,
+    "entradas": 11.867
+   },
+   {
+    "id": "serie",
+    "nombre": "Serie anual 2017-2025",
+    "tipo": "grafico",
+    "mensaje": false,
+    "vieron": 0.967,
+    "ic95": [
+     0.833,
+     0.994
+    ],
+    "ttff_ms": 843,
+    "tiempo_pct": 0.279,
+    "entradas": 11
+   },
+   {
+    "id": "kpi",
+    "nombre": "Mensaje: Crecimiento sostenido +46",
+    "tipo": "kpi",
+    "mensaje": true,
+    "vieron": 0.833,
+    "ic95": [
+     0.664,
+     0.927
+    ],
+    "ttff_ms": 4009,
+    "tiempo_pct": 0.121,
+    "entradas": 4.84
+   },
+   {
+    "id": "pie",
+    "nombre": "Nota: unidades",
+    "tipo": "texto",
+    "mensaje": false,
+    "vieron": 0.3,
+    "ic95": [
+     0.167,
+     0.479
+    ],
+    "ttff_ms": 5662,
+    "tiempo_pct": 0.017,
+    "entradas": 2.556
+   }
+  ],
+  "mensaje": {
+   "vieron": 0.833,
+   "ic95": [
+    0.664,
+    0.927
+   ],
+   "ttff_ms": 4009,
+   "tiempo_pct": 0.121
+  },
+  "orden_narrativo": 0.633,
+  "decoracion_pct": 0.071,
+  "fuera_pct": 0.1,
+  "dispersion": 0.798
+ },
+ "por_audiencia": {
+  "direccion": {
+   "mensaje": {
+    "vieron": 0.7,
+    "ic95": [
+     0.397,
+     0.892
+    ],
+    "ttff_ms": 4009,
+    "tiempo_pct": 0.094
+   },
+   "orden_narrativo": 0.767,
+   "decoracion_pct": 0.056,
+   "zonas": [
+    {
+     "id": "marca",
+     "nombre": "Banda «Aplicando»",
+     "tipo": "decoracion",
+     "mensaje": false,
+     "vieron": 0.9,
+     "ic95": [
+      0.596,
+      0.982
+     ],
+     "ttff_ms": 1305,
+     "tiempo_pct": 0.056,
+     "entradas": 2.111
+    },
+    {
+     "id": "titulo",
+     "nombre": "Título: Evolución de la producción",
+     "tipo": "titulo",
+     "mensaje": false,
+     "vieron": 1,
+     "ic95": [
+      0.722,
+      1
+     ],
+     "ttff_ms": 21,
+     "tiempo_pct": 0.649,
+     "entradas": 8
+    },
+    {
+     "id": "serie",
+     "nombre": "Serie anual 2017-2025",
+     "tipo": "grafico",
+     "mensaje": false,
+     "vieron": 1,
+     "ic95": [
+      0.722,
+      1
+     ],
+     "ttff_ms": 1939.5,
+     "tiempo_pct": 0.101,
+     "entradas": 3.3
+    },
+    {
+     "id": "kpi",
+     "nombre": "Mensaje: Crecimiento sostenido +46",
+     "tipo": "kpi",
+     "mensaje": true,
+     "vieron": 0.7,
+     "ic95": [
+      0.397,
+      0.892
+     ],
+     "ttff_ms": 4009,
+     "tiempo_pct": 0.094,
+     "entradas": 2.571
+    },
+    {
+     "id": "pie",
+     "nombre": "Nota: unidades",
+     "tipo": "texto",
+     "mensaje": false,
+     "vieron": 0.1,
+     "ic95": [
+      0.018,
+      0.404
+     ],
+     "ttff_ms": 5662,
+     "tiempo_pct": 0.004,
+     "entradas": 1
+    }
+   ]
+  },
+  "comercial": {
+   "mensaje": {
+    "vieron": 0.8,
+    "ic95": [
+     0.376,
+     0.964
+    ],
+    "ttff_ms": 7969,
+    "tiempo_pct": 0.045
+   },
+   "orden_narrativo": 0.467,
+   "decoracion_pct": 0.095,
+   "zonas": [
+    {
+     "id": "marca",
+     "nombre": "Banda «Aplicando»",
+     "tipo": "decoracion",
+     "mensaje": false,
+     "vieron": 1,
+     "ic95": [
+      0.566,
+      1
+     ],
+     "ttff_ms": 4847,
+     "tiempo_pct": 0.095,
+     "entradas": 5.4
+    },
+    {
+     "id": "titulo",
+     "nombre": "Título: Evolución de la producción",
+     "tipo": "titulo",
+     "mensaje": false,
+     "vieron": 1,
+     "ic95": [
+      0.566,
+      1
+     ],
+     "ttff_ms": 241,
+     "tiempo_pct": 0.387,
+     "entradas": 13.6
+    },
+    {
+     "id": "serie",
+     "nombre": "Serie anual 2017-2025",
+     "tipo": "grafico",
+     "mensaje": false,
+     "vieron": 1,
+     "ic95": [
+      0.566,
+      1
+     ],
+     "ttff_ms": 21,
+     "tiempo_pct": 0.356,
+     "entradas": 14.6
+    },
+    {
+     "id": "kpi",
+     "nombre": "Mensaje: Crecimiento sostenido +46",
+     "tipo": "kpi",
+     "mensaje": true,
+     "vieron": 0.8,
+     "ic95": [
+      0.376,
+      0.964
+     ],
+     "ttff_ms": 7969,
+     "tiempo_pct": 0.045,
+     "entradas": 2.5
+    },
+    {
+     "id": "pie",
+     "nombre": "Nota: unidades",
+     "tipo": "texto",
+     "mensaje": false,
+     "vieron": 0.2,
+     "ic95": [
+      0.036,
+      0.624
+     ],
+     "ttff_ms": 7342,
+     "tiempo_pct": 0.006,
+     "entradas": 1
+    }
+   ]
+  },
+  "finanzas": {
+   "mensaje": {
+    "vieron": 1,
+    "ic95": [
+     0.676,
+     1
+    ],
+    "ttff_ms": 3466.5,
+    "tiempo_pct": 0.198
+   },
+   "orden_narrativo": 0.583,
+   "decoracion_pct": 0.056,
+   "zonas": [
+    {
+     "id": "marca",
+     "nombre": "Banda «Aplicando»",
+     "tipo": "decoracion",
+     "mensaje": false,
+     "vieron": 1,
+     "ic95": [
+      0.676,
+      1
+     ],
+     "ttff_ms": 2449,
+     "tiempo_pct": 0.056,
+     "entradas": 4.375
+    },
+    {
+     "id": "titulo",
+     "nombre": "Título: Evolución de la producción",
+     "tipo": "titulo",
+     "mensaje": false,
+     "vieron": 1,
+     "ic95": [
+      0.676,
+      1
+     ],
+     "ttff_ms": 129.5,
+     "tiempo_pct": 0.312,
+     "entradas": 15.75
+    },
+    {
+     "id": "serie",
+     "nombre": "Serie anual 2017-2025",
+     "tipo": "grafico",
+     "mensaje": false,
+     "vieron": 1,
+     "ic95": [
+      0.676,
+      1
+     ],
+     "ttff_ms": 165,
+     "tiempo_pct": 0.304,
+     "entradas": 16.875
+    },
+    {
+     "id": "kpi",
+     "nombre": "Mensaje: Crecimiento sostenido +46",
+     "tipo": "kpi",
+     "mensaje": true,
+     "vieron": 1,
+     "ic95": [
+      0.676,
+      1
+     ],
+     "ttff_ms": 3466.5,
+     "tiempo_pct": 0.198,
+     "entradas": 9.125
+    },
+    {
+     "id": "pie",
+     "nombre": "Nota: unidades",
+     "tipo": "texto",
+     "mensaje": false,
+     "vieron": 0.625,
+     "ic95": [
+      0.306,
+      0.863
+     ],
+     "ttff_ms": 8333,
+     "tiempo_pct": 0.019,
+     "entradas": 2
+    }
+   ]
+  },
+  "analista": {
+   "mensaje": {
+    "vieron": 1,
+    "ic95": [
+     0.342,
+     1
+    ],
+    "ttff_ms": 4875.5,
+    "tiempo_pct": 0.1
+   },
+   "orden_narrativo": 0.333,
+   "decoracion_pct": 0.064,
+   "zonas": [
+    {
+     "id": "marca",
+     "nombre": "Banda «Aplicando»",
+     "tipo": "decoracion",
+     "mensaje": false,
+     "vieron": 1,
+     "ic95": [
+      0.342,
+      1
+     ],
+     "ttff_ms": 4763.5,
+     "tiempo_pct": 0.064,
+     "entradas": 6
+    },
+    {
+     "id": "titulo",
+     "nombre": "Título: Evolución de la producción",
+     "tipo": "titulo",
+     "mensaje": false,
+     "vieron": 1,
+     "ic95": [
+      0.342,
+      1
+     ],
+     "ttff_ms": 1687,
+     "tiempo_pct": 0.212,
+     "entradas": 18.5
+    },
+    {
+     "id": "serie",
+     "nombre": "Serie anual 2017-2025",
+     "tipo": "grafico",
+     "mensaje": false,
+     "vieron": 1,
+     "ic95": [
+      0.342,
+      1
+     ],
+     "ttff_ms": 210.5,
+     "tiempo_pct": 0.491,
+     "entradas": 27.5
+    },
+    {
+     "id": "kpi",
+     "nombre": "Mensaje: Crecimiento sostenido +46",
+     "tipo": "kpi",
+     "mensaje": true,
+     "vieron": 1,
+     "ic95": [
+      0.342,
+      1
+     ],
+     "ttff_ms": 4875.5,
+     "tiempo_pct": 0.1,
+     "entradas": 7.5
+    },
+    {
+     "id": "pie",
+     "nombre": "Nota: unidades",
+     "tipo": "texto",
+     "mensaje": false,
+     "vieron": 1,
+     "ic95": [
+      0.342,
+      1
+     ],
+     "ttff_ms": 3179,
+     "tiempo_pct": 0.059,
+     "entradas": 5.5
+    }
+   ]
+  },
+  "operaciones": {
+   "mensaje": {
+    "vieron": 0.8,
+    "ic95": [
+     0.376,
+     0.964
+    ],
+    "ttff_ms": 6691.5,
+    "tiempo_pct": 0.042
+   },
+   "orden_narrativo": 0.733,
+   "decoracion_pct": 0.118,
+   "zonas": [
+    {
+     "id": "marca",
+     "nombre": "Banda «Aplicando»",
+     "tipo": "decoracion",
+     "mensaje": false,
+     "vieron": 1,
+     "ic95": [
+      0.566,
+      1
+     ],
+     "ttff_ms": 1622,
+     "tiempo_pct": 0.118,
+     "entradas": 4.6
+    },
+    {
+     "id": "titulo",
+     "nombre": "Título: Evolución de la producción",
+     "tipo": "titulo",
+     "mensaje": false,
+     "vieron": 1,
+     "ic95": [
+      0.566,
+      1
+     ],
+     "ttff_ms": 252,
+     "tiempo_pct": 0.642,
+     "entradas": 9
+    },
+    {
+     "id": "serie",
+     "nombre": "Serie anual 2017-2025",
+     "tipo": "grafico",
+     "mensaje": false,
+     "vieron": 0.8,
+     "ic95": [
+      0.376,
+      0.964
+     ],
+     "ttff_ms": 1832,
+     "tiempo_pct": 0.112,
+     "entradas": 5.75
+    },
+    {
+     "id": "kpi",
+     "nombre": "Mensaje: Crecimiento sostenido +46",
+     "tipo": "kpi",
+     "mensaje": true,
+     "vieron": 0.8,
+     "ic95": [
+      0.376,
+      0.964
+     ],
+     "ttff_ms": 6691.5,
+     "tiempo_pct": 0.042,
+     "entradas": 1.25
+    },
+    {
+     "id": "pie",
+     "nombre": "Nota: unidades",
+     "tipo": "texto",
+     "mensaje": false,
+     "vieron": 0,
+     "ic95": [
+      0,
+      0.434
+     ],
+     "ttff_ms": null,
+     "tiempo_pct": 0,
+     "entradas": 0
+    }
+   ]
+  }
+ },
+ "alertas": [
+  "El 83 % mira el mensaje: una parte del comité se va sin verlo.",
+  "El mensaje tarda 4,0 s en recibir la primera mirada."
+ ]
+}

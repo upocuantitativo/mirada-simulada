@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Laboratorio · Mirada simulada</title><link rel="stylesheet" href="css/app.css"></head>
+<body data-pagina="lab">
+<main class="lab">
+<aside aria-label="Preparación">
+  <h2>Qué van a mirar</h2>
+  <div class="campo"><label for="caso">Caso de ejemplo</label><select id="caso"></select></div>
+  <div class="campo"><label for="fichero">O tu propia captura</label><input id="fichero" type="file" accept="image/*"><span class="ayuda">También puedes pegarla con Ctrl+V. La imagen no sale de tu navegador.</span></div>
+  <h2>Quién lo mira</h2>
+  <div id="comite"></div>
+  <p class="ayuda" id="totalp"></p>
+  <h2>Cómo se repite</h2>
+  <div class="fila"><label for="semilla">Semilla<small>Misma semilla, mismo resultado</small></label><input id="semilla" type="number" min="1" value="2026"></div>
+  <div class="campo" style="margin-top:8px"><label for="instrumento">Capa de instrumento</label><select id="instrumento"><option value="">Sin aparato: mirada simulada pura</option></select><span class="ayuda" id="insinfo">Error de medida calculado con PyEtSimul.</span></div>
+  <button class="btn" id="simular" style="width:100%;justify-content:center">Simular miradas</button>
+  <div class="barrap" id="progreso"></div>
+</aside>
+
+<section class="escenario" aria-label="Imagen y resultados visuales">
+  <div class="vistas" role="group" aria-label="Vista">
+    <button data-v="imagen">Imagen</button><button data-v="calor">Mapa de calor</button><button data-v="recorrido">Recorrido</button><button data-v="saliencia">Saliencia</button><button data-v="zonas">Zonas</button>
+    <select id="filtro" aria-label="Filtrar por audiencia"></select>
+  </div>
+  <div class="lienzo" id="lienzo"><canvas id="base"></canvas><div class="sello">Datos simulados, no es un registro ocular</div></div>
+  <div class="leyenda" id="leyenda"><span>Menos atención</span><i></i><span>Más atención</span></div>
+  <div class="acciones" id="accRec" hidden>
+    <button class="btn sec peq" id="anterior">Persona anterior</button><button class="btn sec peq" id="siguiente">Persona siguiente</button><button class="btn sec peq" id="reproducir">Reproducir</button><span class="ayuda" id="obsinfo" style="align-self:center"></span>
+  </div>
+  <p class="ayuda" id="ctx" style="margin-top:10px"></p>
+</section>
+
+<aside class="der" aria-label="Resultados">
+  <div id="sinres"><h2>Resultado</h2><p class="ayuda">Elige un caso y pulsa «Simular miradas». Con tu propia captura, marca antes las zonas: sin ellas solo se calcula la saliencia.</p></div>
+  <div id="res" hidden>
+    <h2>¿Encuentran el mensaje?</h2>
+    <div class="mens"><div class="dato"><b id="mVieron"></b><span>lo miran</span></div><div class="dato"><b id="mTtff"></b><span>primera mirada</span></div><div class="dato"><b id="mTiempo"></b><span>del tiempo</span></div></div>
+    <p class="ayuda" id="mIc"></p>
+    <div id="alertas"></div>
+    <h2>Por audiencia</h2>
+    <div class="tablaw"><table class="zonas" id="tPer"></table></div>
+    <h2>Por zona</h2>
+    <div class="tablaw"><table class="zonas" id="tZon"></table></div>
+    <h2>Antes y después</h2>
+    <div class="acciones"><button class="btn sec peq" id="guardaA">Guardar como A</button><button class="btn sec peq" id="guardaB">Guardar como B</button></div>
+    <div class="tablaw" id="cmp"></div>
+    <h2>Llevártelo</h2>
+    <div class="acciones"><button class="btn peq" id="copiar">Copiar para los agentes</button><button class="btn sec peq" id="json">Informe JSON</button><button class="btn sec peq" id="csv">Fijaciones CSV</button><button class="btn sec peq" id="png">Imagen PNG</button></div>
+    <p class="ayuda" id="msgExp" role="status"></p>
+  </div>
+  <h2>Zonas de interés</h2>
+  <p class="ayuda">En la vista «Zonas», arrastra sobre la imagen para crear una. Rojo = mensaje. El número es el orden en que quieres contar la historia.</p>
+  <div id="listaZ"></div>
+</aside>
+</main>
+<script src="js/comun.js"></script><script src="js/motor.js"></script><script src="js/pintar.js"></script><script src="js/lab.js"></script>
+</body></html>

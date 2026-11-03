@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Móntalo tú · Mirada simulada</title><link rel="stylesheet" href="css/app.css"></head>
+<body data-pagina="montar">
+<main class="lectura">
+<h1>Tu propia copia, gratis y en línea</h1>
+<p class="intro">La aplicación son ficheros estáticos: no hay servidor ni base de datos. GitHub Pages la publica gratis.</p>
+<h2>En diez minutos, sin instalar nada</h2>
+<ol>
+<li>Crea una cuenta gratuita en <a href="https://github.com/signup" rel="noopener" target="_blank">github.com</a>.</li>
+<li>Abre <a href="https://github.com/upocuantitativo/mirada-simulada" rel="noopener" target="_blank">el repositorio del curso</a> y pulsa <b>Fork</b>, y después <b>Create fork</b>.</li>
+<li>En tu copia, entra en <b>Settings</b> y luego en <b>Pages</b>.</li>
+<li>En <b>Source</b> elige <b>Deploy from a branch</b>, rama <b>main</b>, carpeta <b>/ (root)</b>, y pulsa <b>Save</b>.</li>
+<li>Espera uno o dos minutos y recarga. Tu web aparece arriba: <code>https://tu-usuario.github.io/mirada-simulada/</code></li>
+</ol>
+<div class="aviso">Tu copia es pública. Sube solo material que puedas enseñar y nunca datos de tu empresa. Las capturas que uses dentro del laboratorio no se suben: se quedan en tu navegador.</div>
+<h2>Adáptala a tu empresa</h2>
+<p>Todo se edita desde la propia web de GitHub, con el icono del lápiz.</p>
+<ul>
+<li><b>Audiencias:</b> el bloque <code>PERSONAS</code> de <code>js/motor.js</code>. Cambia nombre, pregunta, tiempo y pesos, o añade la tuya.</li>
+<li><b>Código de acceso:</b> en <code>js/comun.js</code>, la constante <code>HUELLA</code>. Calcula la nueva en la consola del navegador con <code>Acceso.fnv('TUCODIGO')</code>. Es una barrera de cortesía: quien lea el código podría saltársela.</li>
+<li><b>Casos:</b> sustituye las imágenes de <code>casos/</code> y sus zonas en <code>data/casos.json</code>.</li>
+</ul>
+<h2>Para quien quiera ir más allá</h2>
+<h3>Recalcular el error del aparato con PyEtSimul</h3>
+<p>PyEtSimul simula un eye-tracker: ojo, cámara, luz y calibración. No predice dónde mira nadie: por eso aquí se usa solo para la capa de instrumento. Necesitas Python 3.11 o superior.</p>
+<pre><code>pip install pyetsimul
+python tools/instrumento_pyetsimul.py</code></pre>
+<p>Si clonas su repositorio en Windows y falla por rutas largas, ejecuta antes <code>git config --global core.longpaths true</code>. Con <code>pip</code> no hace falta.</p>
+<h3>Ver la web en tu ordenador</h3>
+<pre><code>python -m http.server 8000</code></pre>
+<p>Abre <code>http://localhost:8000</code>. Abrir <code>index.html</code> con doble clic no funciona, porque el navegador bloquea la lectura de los datos.</p>
+<h2>Proyectos en los que se apoya</h2>
+<ul>
+<li><a href="https://github.com/mh-salari/pyetsimul" rel="noopener" target="_blank">PyEtSimul</a> (GPL-3.0): error del aparato. Bifurcación del curso: <a href="https://github.com/upocuantitativo/pyetsimul" rel="noopener" target="_blank">upocuantitativo/pyetsimul</a>. Se usa su resultado, no su código.</li>
+<li><a href="https://github.com/YueJiang-nj/UEyes-CHI2023" rel="noopener" target="_blank">UEyes</a> y <a href="https://github.com/matthias-k/DeepGaze" rel="noopener" target="_blank">DeepGaze</a>: modelos de referencia entrenados con datos reales. Necesitan Python y GPU, así que aquí no se ejecutan.</li>
+<li><a href="https://github.com/brownhci/WebGazer" rel="noopener" target="_blank">WebGazer</a>: eye-tracking con la webcam, para medir personas de verdad con menos precisión.</li>
+</ul>
+</main>
+<script src="js/comun.js"></script>
+</body></html>

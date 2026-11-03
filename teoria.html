@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Teoría · Mirada simulada</title><link rel="stylesheet" href="css/app.css"></head>
+<body data-pagina="teoria">
+<main class="lectura">
+<h1>Cómo se mueve la mirada sobre un gráfico</h1>
+<p class="intro">Imagina que preparas un informe para la dirección de tu empresa. Has hecho un gráfico espectacular, pero ¿está mirando lo importante?</p>
+
+<h2>Fijaciones y sacadas</h2>
+<p>El ojo no recorre una página de forma continua. Se detiene unos 200 a 300 ms (<b>fijación</b>), salta muy deprisa a otro punto (<b>sacada</b>) y vuelve a detenerse. Durante el salto apenas recogemos información (Rayner, 1998). Solo una zona pequeña se ve con nitidez, así que un gráfico se lee a saltos, no de un vistazo.</p>
+<div class="widget">
+  <div class="pasos" id="p1" role="group" aria-label="Qué mostrar"></div>
+  <canvas id="c1" width="1280" height="800" role="img" aria-label="Gráfico de producción con la capa elegida"></canvas>
+  <p class="ayuda" id="t1" style="margin:8px 0 0"></p>
+</div>
+<ul>
+<li><b>Recorrido</b> (scanpath): la secuencia de fijaciones. Dice en qué orden se lee.</li>
+<li><b>Mapa de calor</b>: la suma de fijaciones de muchas personas. Dice dónde se concentra el tiempo, pero no en qué orden.</li>
+<li><b>Zona de interés</b> (AOI): un área que defines tú, como el título o un indicador, para poder medirla.</li>
+</ul>
+
+<h2>Dos fuerzas: lo que llama y lo que se busca</h2>
+<p>La mirada responde a dos fuerzas a la vez. La <b>ascendente</b> viene de la imagen: contraste, color y tamaño (Itti et al., 1998). La <b>descendente</b> viene de la persona: su tarea y lo que busca. Yarbus (1967) mostró que la misma imagen se mira de forma distinta según la pregunta que se haga. Por eso Dirección y Analista no ven el mismo panel, y por eso el Módulo 5 trabaja por audiencias.</p>
+<div class="widget">
+  <div class="pasos" id="p2" role="group" aria-label="Audiencia"></div>
+  <canvas id="c2" width="1280" height="800" role="img" aria-label="Panel de ventas con el mapa de calor de la audiencia elegida"></canvas>
+  <p class="ayuda" id="t2" style="margin:8px 0 0"></p>
+</div>
+<p>En estudios con visualizaciones, títulos y texto reciben mucha atención y ayudan a recordar el mensaje (Borkin et al., 2016). De ahí la importancia del título de acción que vimos en el Bloque 2.</p>
+
+<h2>Dirigir la atención a propósito</h2>
+<p>El mapa de saliencia estima qué atrae la mirada sin que nadie la pida. Compara las dos versiones y busca dónde se va el color. Es el principio de «gris por defecto, color para la idea» visto con números.</p>
+<div class="widget">
+  <div class="pasos" id="p3" role="group" aria-label="Versión"></div>
+  <canvas id="c3" width="1280" height="800" role="img" aria-label="Mapa de saliencia de la versión elegida"></canvas>
+</div>
+<table>
+<tr><th>Principio de narrativa visual</th><th>Qué hacer</th><th>Dónde se nota en la simulación</th></tr>
+<tr><td>Captar la atención</td><td>Título con el mensaje, arriba y a la izquierda</td><td>Primera mirada más temprana</td></tr>
+<tr><td>Eliminar distracciones</td><td>Quitar decoración, bordes y colores sin significado</td><td>Menos tiempo en decoración, menos dispersión</td></tr>
+<tr><td>Destacar lo relevante</td><td>Un solo color de foco, tamaño, anotación</td><td>Más personas miran el mensaje</td></tr>
+<tr><td>Que los datos cuenten una historia</td><td>Disposición que sigue contexto, conflicto y resolución</td><td>Orden narrativo más alto</td></tr>
+</table>
+
+<h2>Qué se mide</h2>
+<table>
+<tr><th>Métrica</th><th>Pregunta</th><th>Cómo leerla</th></tr>
+<tr><td>Lo miran</td><td>¿Lo encuentran?</td><td>Porcentaje de personas con al menos una fijación en la zona</td></tr>
+<tr><td>Primera mirada</td><td>¿Cuánto tardan?</td><td>Mediana del tiempo hasta entrar en la zona</td></tr>
+<tr><td>Tiempo</td><td>¿Se quedan?</td><td>Parte de la atención total. Mucho tiempo puede ser interés o confusión</td></tr>
+<tr><td>Orden narrativo</td><td>¿Lo leen como lo cuentas?</td><td>Parecido entre el orden real y el tuyo (distancia de edición, de 0 a 100 %)</td></tr>
+<tr><td>Dispersión</td><td>¿Está repartida la atención?</td><td>Alta en paneles sin jerarquía</td></tr>
+</table>
+
+<h2>Simulación frente a medición</h2>
+<p>Esto es lo más importante de la página. <b>Aquí nadie ha mirado nada.</b> El laboratorio aplica reglas y supuestos sobre tu imagen. Un eye-tracker real mide a personas, y además tiene su propio error: la capa de instrumento, calculada con PyEtSimul (Böhme et al., 2008), lo muestra.</p>
+<div class="widget">
+  <div class="pasos" id="p5" role="group" aria-label="Montaje"></div>
+  <canvas id="c5" width="1280" height="800" role="img" aria-label="Fijaciones simuladas y dónde las registraría el aparato"></canvas>
+  <p class="ayuda" id="t5" style="margin:8px 0 0"></p>
+</div>
+<div class="aviso cal"><b>Límites.</b> El modelo no lee: no entiende si una cifra es falsa ni si el mensaje es importante. No se ha calibrado con registros humanos, y los tiempos y pesos de cada audiencia son supuestos del curso. Sirve para comparar versiones de un mismo diseño. Para validar hace falta probar con personas de esa audiencia. Modelos entrenados con datos reales, como UMSI++ y DeepGaze++ (Jiang et al., 2023), se acercan más, pero también estiman.</div>
+
+<h2>Comprueba que lo tienes</h2>
+<div id="quiz"></div>
+
+<h2>Referencias</h2>
+<ul class="ayuda">
+<li>Böhme, M., Dorr, M., Graw, M., Martinetz, T. y Barth, E. (2008). A software framework for simulating eye trackers. <i>ETRA '08</i>.</li>
+<li>Borkin, M. A. et al. (2016). Beyond memorability: Visualization recognition and recall. <i>IEEE TVCG, 22</i>(1).</li>
+<li>Hou, X. y Zhang, L. (2007). Saliency detection: A spectral residual approach. <i>CVPR</i>.</li>
+<li>Itti, L., Koch, C. y Niebur, E. (1998). A model of saliency-based visual attention for rapid scene analysis. <i>IEEE TPAMI, 20</i>(11).</li>
+<li>Jiang, Y. et al. (2023). UEyes: Understanding visual saliency across user interface types. <i>CHI '23</i>.</li>
+<li>Knaflic, C. N. (2015). <i>Storytelling with data</i>. Wiley.</li>
+<li>Rayner, K. (1998). Eye movements in reading and information processing. <i>Psychological Bulletin, 124</i>(3).</li>
+<li>Tatler, B. W. (2007). The central fixation bias in scene viewing. <i>Journal of Vision, 7</i>(14).</li>
+<li>Wooding, D. S. (2002). Eye movements of large populations. <i>Behavior Research Methods, 34</i>(4).</li>
+<li>Yarbus, A. L. (1967). <i>Eye movements and vision</i>. Plenum Press.</li>
+</ul>
+</main>
+<script src="js/comun.js"></script><script src="js/motor.js"></script><script src="js/pintar.js"></script><script src="js/teoria.js"></script>
+</body></html>
