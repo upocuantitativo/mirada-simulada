@@ -19,7 +19,7 @@ Enseña la tabla a la persona y **para**. Pídele que escriba en cada fila Acept
 Lanza `mejora`. Enseña su tabla y **para** otra vez: la persona aprueba qué cambios se aplican y resuelve los conflictos. Anótalo en `salida/decisiones.md`.
 
 ## Fase 3. Power BI
-Si hay una ALERTA sin resolver, no sigas. Si no, lanza `powerbi`. Si hay datos en CSV, ejecuta `python tools/verificar_powerbi.py <csv> salida/5_powerbi.md`: toda cifra de control que no cuadre vuelve al agente.
+Si hay una ALERTA sin resolver, no sigas. Si no, lanza `powerbi`. Si hay datos en CSV, ejecuta `python tools/verificar_powerbi.py <csv> salida/5_powerbi.md`: toda cifra de control que no cuadre vuelve al agente. Si la persona tiene Power BI Desktop abierto con un informe en blanco, `tools/probar_dax_powerbi.ps1` (adaptado a sus medidas) las evalúa en el motor real.
 
 ## Cierre
 Ejecuta `python tools/comprobar_cobertura.py salida`. Si falta algún concepto, vuelve a lanzar al agente responsable: el informe no se cierra con huecos. El script deja en `salida/cobertura.md` una sola tabla con los 43 criterios, su agente, estado, evidencia y la decisión de la persona.

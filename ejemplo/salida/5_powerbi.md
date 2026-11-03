@@ -2,7 +2,7 @@
 
 No hay fichero .pbix. Este documento son instrucciones para que las aplique una persona.
 
-Comprobación (3-nov-2026): el modelo (tablas `Produccion` y `Calendario`) y las nueve medidas se cargaron en el motor de Power BI Desktop 2.159 y se evaluaron con consultas DAX. Las cifras de control y el título dinámico salieron como se indica; «Anios con caida» daba en blanco y se corrigió en el paso 14. No se comprobaron con el motor la importación del CSV en Power Query, la relación entre tablas, los visuales, el formato ni la publicación.
+Comprobación (3-nov-2026): el modelo (tablas `Produccion` y `Calendario`) y las nueve medidas se cargaron en el motor de Power BI Desktop 2.159 y se evaluaron con consultas DAX. Las cifras de control y el título dinámico salieron como se indica; «Anios con caida» daba en blanco y se corrigió en el paso 14. Con la relación `Produccion[Fecha]` → `Calendario[Date]` activa, filtrar por `Calendario[Anio]` da las mismas cifras (17 de 17 pruebas). Para repetirlo: `tools/probar_dax_powerbi.ps1`. No se comprobaron con el motor la importación del CSV en Power Query (el script carga los mismos datos como tabla DAX), los visuales, el formato ni la publicación.
 
 La ALERTA de la auditoría sobre «+46» está resuelta en `decisiones.md` (B1.8): el mensaje es +175 unidades (210 − 35), comprobado en `produccion.csv`. Se escriben, por tanto, los pasos. Se consideran aprobados los cambios de los hallazgos aceptados de `4_mejora.md`.
 
