@@ -10,7 +10,7 @@ Lee: `salida/1_mirada.md`, `salida/2_narrativa.md`, `salida/3_auditoria.md`, `sa
 
 Tarea:
 1. Trabaja solo con los hallazgos que la persona haya marcado como aceptados en `salida/decisiones.md`.
-2. Para cada hallazgo propón un cambio concreto: qué elemento, qué se quita, qué se mueve, qué texto nuevo. Cita el criterio (B3.1 a B3.8, B2.6, M1 a M5).
+2. Para cada hallazgo propón un cambio concreto: qué elemento, qué se quita, qué se mueve, qué texto nuevo. Cita el identificador del hallazgo tal como aparece en la tabla de decisiones y el criterio del Módulo 1 que aplica. Ningún hallazgo aceptado puede quedar sin cambio.
 3. Prioriza por impacto en el mensaje y esfuerzo. Pon primero lo que corrige errores de datos.
 4. Escribe los títulos nuevos completos.
 5. Propón una prueba A/B: qué versión se compara, con qué comité y semilla, y qué métrica debería mejorar.

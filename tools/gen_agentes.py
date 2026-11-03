@@ -10,7 +10,7 @@ alerta = re.search(r'ALERTA: .*', lee('ejemplo', 'salida', '3_auditoria.md')).gr
 ej = ('<p>Le dimos al equipo el gráfico de producción de la diapositiva, sus datos y el informe del laboratorio. Esto es lo que escribió el agente Auditoría, sin ayuda:</p>'
       f'<div class="aviso cal">{html.escape(alerta)}</div>'
       '<p>Nadie le había dicho dónde estaba el error. La mirada no lo podía ver: el laboratorio solo dice que el recuadro se mira, no que sea cierto. '
-      'Las decisiones del ejemplo las redactó el material del curso para mostrar la puerta humana, y dos hallazgos quedaron rechazados por falta de datos.</p><p>Informes reales del equipo: '
+      'Las decisiones del ejemplo las redactó el material del curso para mostrar la puerta humana, y cinco hallazgos quedaron rechazados por falta de datos de capacidad.</p><p>Informes reales del equipo: '
       + ', '.join(f'<a href="{BASE}{f}" target="_blank" rel="noopener">{n}</a>' for f, n in FICH) + '.</p>')
 json.dump(dict(agentes=ag, criterios=lee('modulo1', 'CRITERIOS.md'), brief=lee('plantillas', 'brief.md'), ejemplo=ej), open(os.path.join(R, 'data', 'agentes.json'), 'w', encoding='utf-8'), ensure_ascii=False)
 print('ok')

@@ -24,6 +24,8 @@ Haz fork y activa GitHub Pages: Settings, Pages, Deploy from a branch, `main`, `
 
 ## Base científica y créditos
 
+La vista «Modelo MSI-Net» usa el modelo de Kroner et al. (2020), licencia MIT, copiado en `modelos/msi-net/` con su licencia.
+
 Residuo espectral (Hou y Zhang, 2007), contraste centro-periferia (Itti et al., 1998), influencia de la tarea (Yarbus, 1967) y sesgo central (Tatler, 2007). La capa de instrumento usa resultados de [PyEtSimul](https://github.com/mh-salari/pyetsimul) (GPL-3.0); su código no se incluye aquí, solo se ejecuta en `tools/`. Las cifras de Road Bikes son un escenario docente, no datos nativos de Adventure Works.
 
 Licencia MIT para el código de este repositorio.

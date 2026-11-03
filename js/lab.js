@@ -24,7 +24,7 @@
 
   async function fijar(src, aois, nombre, contexto) {
     E.imagen = await Pintar.cargar(src); E.mapa = Motor.saliencia(E.imagen.datos, E.imagen.w, E.imagen.h);
-    E.aois = aois.map(a => ({ ...a, para: (a.para || []).slice() })); E.obs = null; E.nombre = nombre; E.sel = null; E.indice = 0;
+    E.aois = aois.map(a => ({ ...a, para: (a.para || []).slice() })); E.obs = null; E.mapaRed = null; E.nombre = nombre; E.sel = null; E.indice = 0;
     let h = 0; const d = E.imagen.datos; for (let i = 0; i < d.length; i += 4001) h = (Math.imul(h, 31) + d[i]) | 0;
     E.huella = (h >>> 0).toString(16);
     base.width = E.imagen.w; base.height = E.imagen.h;
@@ -42,10 +42,20 @@
   function aviso(t) { $('msgExp').textContent = t; $('ctx').textContent = t; }
 
   // ---- simulación -------------------------------------------------------------------
+  async function neuronal() {
+    if (E.mapaRed) return E.mapaRed;
+    E.mapaRed = await Neuronal.predecir(E.imagen.lienzo, E.imagen.w, E.imagen.h);
+    return E.mapaRed;
+  }
   $('simular').addEventListener('click', async () => {
     const b = $('simular'), n = total(); if (!n) return;
     b.disabled = true; b.textContent = 'Simulando…'; $('progreso').style.transform = 'scaleX(0)';
-    const semilla = parseInt($('semilla').value) || 1, puro = await Motor.simular({ mapa: E.mapa, aois: E.aois, comite: comite(), semilla, progreso: (h, t) => { $('progreso').style.transform = `scaleX(${h / t})`; } });
+    let mapaBase = E.mapa;
+    if ($('ascendente').value === 'msinet') {
+      try { b.textContent = 'Cargando MSI-Net…'; mapaBase = await neuronal(); } catch (e) { $('ascendente').value = 'reglas'; aviso('No se ha podido cargar MSI-Net. Sigo con las reglas de contraste.'); }
+      b.textContent = 'Simulando…';
+    }
+    const semilla = parseInt($('semilla').value) || 1, puro = await Motor.simular({ mapa: mapaBase, aois: E.aois, comite: comite(), semilla, progreso: (h, t) => { $('progreso').style.transform = `scaleX(${h / t})`; } });
     const prop = E.imagen.h / E.imagen.w * (INS.pantalla_mm[0] / INS.pantalla_mm[1]) || 1;
     E.obs = Motor.instrumentar(puro, E.aois, montaje(), semilla, prop);
     E.medidas = Motor.metricas(E.obs, E.aois); E.puro = puro; E.indice = 0;
@@ -78,7 +88,7 @@
   $('guardaB').onclick = () => { E.B = { m: E.medidas, n: E.nombre, informe: informe() }; comparar(); };
 
   // ---- vistas -----------------------------------------------------------------------
-  function ver(v) { E.vista = v; document.querySelectorAll('.vistas button').forEach(b => b.setAttribute('aria-pressed', b.dataset.v === v)); $('lienzo').classList.toggle('dibuja', v === 'zonas'); $('leyenda').style.visibility = v === 'calor' || v === 'saliencia' ? 'visible' : 'hidden'; $('accRec').hidden = v !== 'recorrido'; cancelAnimationFrame(E.anim); dibujar(); }
+  function ver(v) { E.vista = v; document.querySelectorAll('.vistas button').forEach(b => b.setAttribute('aria-pressed', b.dataset.v === v)); $('lienzo').classList.toggle('dibuja', v === 'zonas'); $('leyenda').style.visibility = v === 'calor' || v === 'saliencia' || v === 'neuronal' ? 'visible' : 'hidden'; $('accRec').hidden = v !== 'recorrido'; cancelAnimationFrame(E.anim); dibujar(); }
   document.querySelectorAll('.vistas button').forEach(b => b.onclick = () => ver(b.dataset.v));
 
   function observados() { return E.obs ? filtrados() : []; }
@@ -92,6 +102,10 @@
     } else if (E.vista === 'saliencia') {
       ctx.fillStyle = 'rgba(255,255,255,.3)'; ctx.fillRect(0, 0, w, h);
       Pintar.calor(ctx, E.mapa.mapa, E.mapa.W, E.mapa.H, w, h, 1);
+    } else if (E.vista === 'neuronal') {
+      ctx.fillStyle = 'rgba(255,255,255,.3)'; ctx.fillRect(0, 0, w, h);
+      if (E.mapaRed) Pintar.calor(ctx, E.mapaRed.mapa, E.mapaRed.W, E.mapaRed.H, w, h, 1);
+      else { $('ctx').textContent = 'Cargando MSI-Net (25 MB, solo la primera vez)…'; neuronal().then(() => { $('ctx').textContent = 'MSI-Net estima dónde iría la mirada de una persona cualquiera. No distingue audiencias y se entrenó con fotografías, no con paneles.'; if (E.vista === 'neuronal') dibujar(); }).catch(() => { $('ctx').textContent = 'No se ha podido cargar MSI-Net. Comprueba tu conexión y vuelve a intentarlo.'; }); }
     } else if (E.vista === 'recorrido' && E.obs) {
       const o = observados(), i = Math.min(E.indice, o.length - 1);
       if (o[i]) { const fx = o[i].fijaciones, lim = Math.min(fx.length, 40); Pintar.recorrido(ctx, fx.slice(0, lim), w, h, hasta); $('obsinfo').textContent = `${Motor.PERSONAS[o[i].persona].nombre}, persona ${i + 1} de ${o.length}. Primeras ${lim} de ${fx.length} fijaciones.`; }
@@ -144,7 +158,7 @@
     return {
       aviso: 'Datos simulados con un modelo didáctico. No es un registro ocular de personas reales.',
       motor: 'Mirada simulada ' + Motor.VERSION, autor: s.nombre || '', correo: s.correo || '', fecha: new Date().toISOString().slice(0, 10), caso: E.nombre, huella_imagen: E.huella, semilla: parseInt($('semilla').value) || 1,
-      comite: com, instrumento: montaje() ? montaje().clave : null,
+      comite: com, instrumento: montaje() ? montaje().clave : null, mapa_de_partida: $('ascendente').value,
       zonas_definidas: E.aois.map(a => ({ id: a.id, nombre: a.nombre, tipo: a.tipo, mensaje: !!a.mensaje, orden: a.orden || 0, para: a.para, caja: [a.x, a.y, a.w, a.h] })),
       global: redondear(m), por_audiencia: Object.fromEntries(Object.entries(Motor.porPersona(E.obs, E.aois)).map(([k, v]) => [k, redondear({ mensaje: v.mensaje, orden_narrativo: v.orden_narrativo, decoracion_pct: v.decoracion_pct, zonas: v.zonas })])),
       alertas: Motor.alertas(m).map(a => a.texto)

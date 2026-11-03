@@ -1,41 +1,57 @@
-# Mejora: gráfico «Evolución de la producción»
+# Mejora: «Evolución de la producción» (grafico_antes.png)
 
-Trabajo solo con los hallazgos aceptados en `decisiones.md`: A1, A2, A3, N1, M1, M2, M3. No entran A4 ni N2 (rechazados por ahora): no se pide ninguna decisión sobre capacidad ni se añade capacidad o demanda. Tampoco entran H4 ni H5 de la mirada ni los hallazgos de narrativa 5 y 7 (acumulado, BLUF), que no figuran en la tabla de decisiones.
+Se trabaja solo con los hallazgos marcados como aceptados en `decisiones.md`. Los rechazados por ahora quedan fuera de este documento: faltan datos de capacidad y demanda.
+
+Cifra del mensaje: la ALERTA de la auditoría está resuelta por la persona. El mensaje pasa a +175 unidades (210 − 35, de 2017 a 2025), comprobado en `produccion.csv`.
 
 ## Tabla priorizada
 
 | Prioridad | Cambio | Hallazgo | Criterio | Impacto | Esfuerzo |
 |---|---|---|---|---|---|
-| 1 | Sustituir el recuadro «Crecimiento sostenido: +46 unidades» por la cifra real: +175 unidades (210 − 35, `produccion.csv`, 2017-2025). Corrige un error de datos. | A1 | B1.5, B1.6 | Alto: la cifra que ve Dirección deja de ser falsa | Bajo |
-| 2 | Quitar «sostenido» de todo el texto y escribir «subió todos los años», que es un hecho (ningún año baja). | A2 | B1.6 | Alto: separa hecho de interpretación | Bajo |
-| 3 | Reemplazar el título-etiqueta por un título de acción que lleve el mensaje (ver Títulos nuevos). El mensaje pasa al título y se elimina el recuadro como segundo mensaje. | N1, M2, M1 | B2.6, B2.2, M1, M2 | Alto: el título recibe hoy el 64,9 % del tiempo de Dirección y llega a 21 ms; con el mensaje dentro, la atención va al mensaje | Bajo |
-| 4 | Añadir bajo el título una línea con unidad, fuente, periodo de corte y fecha de extracción. Datos de fuente, corte y fecha: [DATO PENDIENTE] del autor. | A3 | B1.5 | Medio | Bajo (el dato depende del autor) |
-| 5 | Quitar la banda «APLICANDO / Antes / Después». Es de la plantilla de clase y no aporta. | M3 | B3.3, M3 | Bajo en el comité global (7,1 %), pero en Operaciones pasa del 10 % (11,8 %) | Bajo |
-| 6 | Dar foco a la serie: línea en un solo color con contraste, etiquetas solo en 2017 y 2025 (35 y 210), resto en gris o sin etiqueta, y una anotación directa «+175 unidades». Se quita el icono de barras del recuadro, que sugiere un gráfico que no existe. | M1, M2 (apoyo) | B3.1, B3.3, B3.4, B3.8 | Medio: ayuda a que la mirada llegue al mensaje | Medio |
-| 7 | Rotular el eje Y con la unidad («Unidades producidas») y mantener el eje desde 0. | A3 | B3.6 | Bajo | Bajo |
+| 1 | Sustituir «+46 unidades» por «+175 unidades» en el recuadro del mensaje y fijar periodo (2017-2025) y comparación (2025 frente a 2017). | B1.8 | B1.8 El titular evidente | Alto: corrige un error de datos | Bajo |
+| 2 | Separar hecho e interpretación: hecho «La producción subió cada año, de 35 a 210 unidades»; la lectura («sostenido») va en frase aparte y marcada como interpretación. | B1.9 | B1.9 Hecho, interpretación e hipótesis | Alto | Bajo |
+| 3 | Sustituir el título-etiqueta por el título de acción nuevo (ver más abajo). | B2.9 | B2.9 Título de acción | Alto | Bajo |
+| 4 | Convertir el recuadro inferior en una Big Idea de frase completa, sin cifra inventada: «La producción se multiplicó por seis entre 2017 y 2025 (+175 unidades)». | B2.3 | B2.3 Big Idea | Alto | Bajo |
+| 5 | Poner la respuesta arriba (título) y dos argumentos debajo: volumen (35 a 210) y ritmo (+10 en 2020, +35 en 2021); la serie queda como evidencia al fondo. | B2.5 | B2.5 Pirámide de Minto | Medio | Medio |
+| 6 | Dejar un único énfasis: serie y cifra en el mismo acento; el resto en gris. | B3.1 | B3.1 Atributos preatentivos | Alto | Bajo |
+| 7 | Gris por defecto para icono, nota y puntos no destacados; acento solo para la serie y los dos hitos anotados. | B3.7 | B3.7 Foco | Alto | Bajo |
+| 8 | Un solo color para la magnitud de producción (serie y cifra del mensaje). | B3.12 | B3.12 Un color, un significado | Medio | Bajo |
+| 9 | Quitar la banda «Aplicando», el icono de barras y la rejilla horizontal. | B3.6 | B3.6 Desorden y carga cognitiva | Medio | Bajo |
+| 10 | Oscurecer la línea de datos hasta superar 3:1 sobre el fondo, mantener el texto sobre 4,5:1 y añadir texto alternativo al visual. | B3.11 | B3.11 Daltonismo y contraste | Medio | Bajo |
+| 11 | Anotar 2020 («+10, menor aumento anual») y 2021 («+35, mayor aumento anual»). | B3.14 | B3.14 Anotación | Medio | Bajo |
+| 12 | Añadir subtítulo «Unidades producidas por año, 2017-2025» y pie «Fuente: produccion.csv. Actualizado: [FECHA PENDIENTE]». | B3.15 | B3.15 Subtítulo, fuente y fecha | Medio | Bajo |
+| 13 | Mover el mensaje a la zona superior izquierda, junto al título, y bajar el peso visual del título (el mensaje recibe el 12,1 % del tiempo; el título, el 41,2 %). | M1 | M1 Encuentra el mensaje | Alto | Bajo |
+| 14 | Hacer la cifra más grande y colocarla antes de la serie para acortar el recorrido hasta ella (primera mirada a 4009 ms). | M2 | M2 Pronto | Alto | Bajo |
+| 15 | Dar a la pieza una secuencia de tres páginas: 1) crecimiento acumulado, 2) ritmo anual con hitos, 3) anexo con la serie completa. Una idea, un título y un gráfico por página. | B2.11 | B2.11 Storyboard | Medio | Alto |
+| 16 | Hacer que los títulos de las tres páginas, leídos seguidos, formen el resumen ejecutivo. | B2.10 | B2.10 Titles test | Medio | Medio |
+| 17 | Añadir arco: contexto (la producción ha crecido, ya sabido), hallazgo (+175 y ritmo irregular) y cierre con lo que el comité ya sabe; lo que falta de la resolución queda pendiente de datos. | B2.1 | B2.1 Arco narrativo | Medio | Medio |
+| 18 | Elegir una perla (el aumento acumulado de 175 unidades) y llevar el detalle anual al anexo. | B1.2 | B1.2 Explicar, no explorar | Medio | Medio |
+| 19 | Unir datos, narrativa y visual: título que explica, anotación que ilumina, un solo acento que engancha. | B1.3 | B1.3 Tres elementos | Medio | Medio |
 
-Cada cambio se puede deshacer (la versión original se conserva como versión A) y se explica a la audiencia con una frase: «el número ahora sale de los datos» (1), «solo afirmamos lo que se ve» (2), «el título dice lo que pasó» (3).
-
-El cambio 6 va más allá de lo aceptado en M1/M2 (es una consecuencia de B3.4). Si la persona lo considera excesivo, se puede aplicar solo del 1 al 5 y el 7.
+Primero van los cambios que corrigen datos (1 y 2), luego los que cambian el mensaje y por último el diseño.
 
 ## Títulos nuevos
 
-- **Título principal (propuesta):** «La producción subió todos los años entre 2017 y 2025: de 35 a 210 unidades, +175».
-- **Subtítulo:** «Unidades producidas por año. Fuente: [DATO PENDIENTE]. Datos hasta [DATO PENDIENTE: corte y fecha de extracción].»
-- **Anotación sobre la serie:** «+175 unidades (2017-2025)».
+Todas las cifras salen de `produccion.csv`.
 
-El título no dice qué implica para el plan de capacidad: esa implicación depende de datos de capacidad que no se tienen (A4 y N2, rechazados por ahora). Si más adelante se aceptan, el título pasaría a completarse con la consecuencia.
+- Página 1: «La producción se multiplicó por seis entre 2017 y 2025: de 35 a 210 unidades (+175)».
+- Página 2: «El aumento anual fue irregular: +10 unidades en 2020 y +35 en 2021, sin caídas en ningún año».
+- Página 3 (anexo): «Producción anual de 2017 a 2025, en unidades».
+- Recuadro del mensaje: «+175 unidades entre 2017 y 2025».
+
+Los títulos no afirman nada sobre capacidad ni demanda, que no están en los datos.
 
 ## Conflictos por decidir
 
-1. **Título de acción frente a lo rechazado en N2.** B2.6 pide que el título diga qué pasó y qué implica. La persona ha rechazado plantear la decisión sobre capacidad. Opciones: (a) título solo con el hecho, como arriba (coherente con lo decidido, cumple B2.6 a medias); (b) añadir una implicación suave sin cifras de capacidad, por ejemplo «…; falta contrastarlo con la capacidad instalada» (honesta, pero introduce un pendiente en el título). Recomendación: (a), hasta tener los datos. Decide la persona.
-2. **Qué hacer con el recuadro del mensaje.** M2 acepta que título y mensaje sean lo mismo. Opciones: (a) eliminar el recuadro (menos elementos, una sola zona de mensaje); (b) conservarlo con «+175 unidades» como refuerzo (Finanzas lo encuentra al 100 % en el KPI actual, así que se perdería algo en esa audiencia). El informe de la mirada no resuelve cuál funciona mejor; es lo que mide la prueba A/B. Decide la persona.
-3. **Cifra a destacar.** A1 fija +175 (aumento total). Los datos permiten también 1.065 (acumulado) y +20 (último año). Narrativa señaló que la audiencia no conoce el acumulado, pero esa cifra no está en las decisiones. No se incluye. Decide la persona si se añade.
+- Dirección quiere menos elementos y el Analista busca la serie con detalle (49,1 % de su tiempo en la serie). Opción A: una página con serie y dos anotaciones. Opción B: página 1 solo con el mensaje y serie completa en el anexo. Decide la persona.
+- El título largo ayuda a Dirección, pero compite con el mensaje en tiempo de mirada. Opción A: título de dos líneas y mensaje debajo. Opción B: título corto en la cabecera y la frase completa dentro del recuadro. Decide la persona.
+- Estas elecciones deben cerrarse antes de la prueba A/B.
 
 ## Prueba A/B
 
-- **Versión A:** `grafico_antes.png`, sin cambios.
-- **Versión B:** gráfico con los cambios 1 a 7 y la opción elegida en los conflictos 1 y 2.
-- **Comité y semilla:** el mismo en las dos versiones: Dirección 10, Finanzas 8, Comercial 5, Operaciones 5, Analista 2 (30 personas simuladas) y semilla 2026. Las zonas se redefinen en B (el mensaje es el título y la anotación) y se anota qué zona cuenta como mensaje en cada versión.
-- **Métricas que esperaría que mejoren:** M1 (proporción de Dirección que mira el mensaje, hoy 70 %), M2 (primera mirada al mensaje, hoy 4009 ms) y M3 en Operaciones (tiempo en decoración, hoy 11,8 %). Sin promesa de cuánto.
-- **Límite:** una simulación con 30 personas es un indicio; los perfiles pequeños tienen intervalos anchos. Validarlo exige personas reales: al menos 20 en total y 5 o más por perfil, con prueba de cinco segundos y pregunta de recuerdo del mensaje («¿cuánto ha subido la producción y entre qué años?»).
+- Versión A: `grafico_antes.png`, sin cambios.
+- Versión B: la pieza con los cambios 1 a 14 aplicados (cifra corregida, título de acción, un acento, anotaciones, mensaje arriba). Los cambios de storyboard y arco (15 a 19) se prueban aparte.
+- Comité y semilla: el mismo comité del informe de mirada (Dirección 10, Comercial 5, Finanzas 8, Analista 2, Operaciones 5; 30 personas simuladas) y la misma semilla, 2026, para que la diferencia venga de la pieza y no del muestreo.
+- Métricas que se espera que mejoren: porcentaje que mira el mensaje (M1), tiempo hasta la primera mirada al mensaje (M2) y proporción del tiempo en el mensaje frente al título. No se promete cuánto.
+- Límite: es una simulación, no una medición; los umbrales son reglas de trabajo del curso. Validar exige seguimiento ocular con personas reales de Dirección, Finanzas y Operaciones.
+- Cada cambio se puede deshacer: la versión A se conserva y los cambios son independientes entre sí en la tabla.

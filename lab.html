@@ -13,13 +13,14 @@
   <h2>Cómo se repite</h2>
   <div class="fila"><label for="semilla">Semilla<small>Misma semilla, mismo resultado</small></label><input id="semilla" type="number" min="1" value="2026"></div>
   <div class="campo" style="margin-top:8px"><label for="instrumento">Capa de instrumento</label><select id="instrumento"><option value="">Sin aparato: mirada simulada pura</option></select><span class="ayuda" id="insinfo">Error de medida calculado con PyEtSimul.</span></div>
+  <div class="campo"><label for="ascendente">Mapa de partida</label><select id="ascendente"><option value="reglas">Reglas de contraste (rápido)</option><option value="msinet">MSI-Net, red entrenada con atención humana (descarga 25 MB)</option></select><span class="ayuda">Las tareas evaluables usan «Reglas de contraste».</span></div>
   <button class="btn" id="simular" style="width:100%;justify-content:center">Simular miradas</button>
   <div class="barrap" id="progreso"></div>
 </aside>
 
 <section class="escenario" aria-label="Imagen y resultados visuales">
   <div class="vistas" role="group" aria-label="Vista">
-    <button data-v="imagen">Imagen</button><button data-v="calor">Mapa de calor</button><button data-v="recorrido">Recorrido</button><button data-v="saliencia">Saliencia</button><button data-v="zonas">Zonas</button>
+    <button data-v="imagen">Imagen</button><button data-v="calor">Mapa de calor</button><button data-v="recorrido">Recorrido</button><button data-v="saliencia">Saliencia</button><button data-v="neuronal">Modelo MSI-Net</button><button data-v="zonas">Zonas</button>
     <select id="filtro" aria-label="Filtrar por audiencia"></select>
   </div>
   <div class="lienzo" id="lienzo"><canvas id="base"></canvas><div class="sello">Datos simulados, no es un registro ocular</div></div>
@@ -53,5 +54,5 @@
   <div id="listaZ"></div>
 </aside>
 </main>
-<script src="js/comun.js"></script><script src="js/motor.js"></script><script src="js/pintar.js"></script><script src="js/lab.js"></script>
+<script src="js/comun.js"></script><script src="js/motor.js"></script><script src="js/pintar.js"></script><script src="js/neuronal.js"></script><script src="js/lab.js"></script>
 </body></html>

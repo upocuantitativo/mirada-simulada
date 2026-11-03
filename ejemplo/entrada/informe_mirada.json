@@ -15,6 +15,7 @@
   "operaciones": 5
  },
  "instrumento": null,
+ "mapa_de_partida": "reglas",
  "zonas_definidas": [
   {
    "id": "marca",

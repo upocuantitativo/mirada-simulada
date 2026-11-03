@@ -21,6 +21,15 @@
   try { const i = localStorage.getItem('mirada.informe'); if (i) $('inf').value = JSON.stringify(JSON.parse(i), null, 1); } catch (e) {}
   $('ejemplo').innerHTML = D.ejemplo;
 
+  const CR = [...D.criterios.matchAll(/^- \*\*((?:B\d\.\d+|M\d)) ([^*]+)\*\* \[([^\]]+)\]/gm)].map(m => ({ id: m[1], t: m[2], ag: m[3] }));
+  const por = {}; CR.forEach(c => (por[c.ag] = por[c.ag] || []).push(c));
+  $('matriz').innerHTML = '<tr><th>Agente</th><th class="num">Conceptos</th><th>Cuáles</th></tr>' + Object.entries(por).map(([a, l]) => `<tr><td>${a}</td><td class="num">${l.length}</td><td>${l.map(c => c.t).join(', ')}</td></tr>`).join('');
+  $('cob').addEventListener('input', () => {
+    const t = $('cob').value, falta = CR.filter(c => !t.split(String.fromCharCode(10)).some(l => { const p = l.split('|').map(x => x.replace(/\*/g, '').trim()); return p[1] === c.id && /^(Cumple|No cumple|No aplica)$/.test(p[2] || ''); }));
+    const nc = (t.match(/\|\s*\**No cumple\**\s*\|/g) || []).length;
+    $('cobres').textContent = !t.trim() ? '' : `${CR.length - falta.length} de ${CR.length} criterios evaluados. ${nc} no se cumplen.` + (falta.length ? ' Faltan: ' + falta.slice(0, 12).map(c => c.id).join(', ') + (falta.length > 12 ? '…' : '') : ' Cobertura completa.');
+  });
+
   $('copiaP').onclick = async () => {
     const k = $('cual').value, usaPrev = k === 'mejora' || k === 'powerbi';
     if (!$('inf').value.trim() && k === 'mirada') { $('msg').textContent = 'Falta el informe de la mirada. Genéralo en el laboratorio.'; return; }

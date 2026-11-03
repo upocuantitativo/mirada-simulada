@@ -278,5 +278,7 @@
     return a;
   }
 
-  return { VERSION, GW, GRADOS_ANCHO, PERSONAS, TIPOS, azar, hash, saliencia, simular, simularSinc, instrumentar, metricas, porPersona, mapaAtencion, alertas, aoiEn, edicion, wilson };
+  function desdeRejilla(m, w, h, ancho, alto) { const W = GW, H = Math.max(8, Math.round(GW * alto / ancho)); return { mapa: normalizar(escalar(m, w, h, W, H)), W: W, H: H }; }
+
+  return { VERSION, GW, GRADOS_ANCHO, desdeRejilla, PERSONAS, TIPOS, azar, hash, saliencia, simular, simularSinc, instrumentar, metricas, porPersona, mapaAtencion, alertas, aoiEn, edicion, wilson };
 });

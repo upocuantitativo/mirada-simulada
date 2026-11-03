@@ -12,7 +12,7 @@ Comprueba que existen `entrada/brief.md`, una imagen en `entrada/` y `entrada/in
 Lanza a la vez los agentes `mirada`, `narrativa` y `auditoria`. Comprueba que han escrito `salida/1_mirada.md`, `salida/2_narrativa.md` y `salida/3_auditoria.md`.
 
 ## Puerta humana 1
-Une los hallazgos en una tabla en `salida/decisiones.md`: ID, agente, hallazgo, criterio, gravedad y una columna «Decisión» vacía. Pon las ALERTAS primero. Señala las contradicciones entre agentes sin resolverlas.
+Une los hallazgos en una tabla en `salida/decisiones.md`: ID, agente, hallazgo, criterio, gravedad y una columna «Decisión» vacía. Todo criterio marcado «No cumple» en una tabla de cobertura debe aparecer aquí. Pon las ALERTAS primero. Señala las contradicciones entre agentes sin resolverlas.
 Enseña la tabla a la persona y **para**. Pídele que escriba en cada fila Aceptado o Rechazado, con el motivo si rechaza. No sigas sin esa respuesta. Nunca rellenes la columna por ella.
 
 ## Fase 2. Mejora
@@ -22,4 +22,5 @@ Lanza `mejora`. Enseña su tabla y **para** otra vez: la persona aprueba qué ca
 Si hay una ALERTA sin resolver, no sigas. Si no, lanza `powerbi`.
 
 ## Cierre
+Ejecuta `python tools/comprobar_cobertura.py salida`. Si falta algún concepto, vuelve a lanzar al agente responsable: el informe no se cierra con huecos.
 Escribe `salida/informe_equipo.md`: mensaje, alertas, decisiones de la persona, cambios aprobados, prueba A/B y qué queda sin resolver. Termina con esta frase: «La IA ha propuesto; las decisiones de esta tabla las ha tomado <nombre del brief>.»
