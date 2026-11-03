@@ -16,14 +16,29 @@ FICH = {'Mirada': '1_mirada.md', 'Narrativa': '2_narrativa.md', 'Auditoría': '3
 sal = sys.argv[1] if len(sys.argv) > 1 else 'salida'
 crit = re.findall(r'^- \*\*((?:B\d\.\d+|M\d)) [^*]+\*\* \[([^\]]+)\]', open(os.path.join(R, 'modulo1', 'CRITERIOS.md'), encoding='utf-8').read(), re.M)
 leer = lambda f: open(os.path.join(sal, f), encoding='utf-8').read() if os.path.exists(os.path.join(sal, f)) else ''
-faltan, nocumple, cuenta = [], [], {}
+nombres = dict(re.findall(r'^- \*\*((?:B\d\.\d+|M\d)) ([^*]+)\*\*', open(os.path.join(R, 'modulo1', 'CRITERIOS.md'), encoding='utf-8').read(), re.M))
+faltan, nocumple, cuenta, filas = [], [], {}, []
 for ident, ag in crit:
     txt = leer(FICH[ag]); m = re.search(r'^\|\s*\**' + re.escape(ident) + r'\**\s*\|\s*\**(Cumple|No cumple|No aplica)\**\s*\|\s*(.*?)\s*\|\s*$', txt, re.M)
-    if not m: faltan.append(f'{ident} ({ag}): sin fila de cobertura'); continue
+    if not m: faltan.append(f'{ident} ({ag}): sin fila de cobertura'); filas.append((ident, ag, 'FALTA', '')); continue
     if len(m.group(2)) < 8: faltan.append(f'{ident} ({ag}): sin evidencia ni motivo')
     cuenta[m.group(1)] = cuenta.get(m.group(1), 0) + 1
+    filas.append((ident, ag, m.group(1), m.group(2)))
     if m.group(1) == 'No cumple': nocumple.append(ident)
 dec, mej = leer('decisiones.md'), leer('4_mejora.md')
+# informe único: los 43 criterios en una sola tabla, con la decisión de la persona si la hay
+def decision(i):
+    for l in dec.splitlines():
+        if re.search(r'(?<![\w.])' + re.escape(i) + r'(?![\d])', l):
+            d = re.search(r'\b(Aceptado|Rechazado)\b', l)
+            if d: return d.group(1)
+    return ''
+if os.path.isdir(sal):
+    with open(os.path.join(sal, 'cobertura.md'), 'w', encoding='utf-8') as f:
+        f.write('# Cobertura del Módulo 1\n\nGenerado por `tools/comprobar_cobertura.py` a partir de los informes de los agentes.\n\n')
+        f.write('| ID | Concepto | Agente | Estado | Decisión | Evidencia |\n|---|---|---|---|---|---|\n')
+        for i, ag, est, ev in filas:
+            f.write(f'| {i} | {nombres.get(i, "").strip()} | {ag} | {est} | {decision(i) if est == "No cumple" else ""} | {ev.replace("|", "/")} |\n')
 for i in nocumple:
     if not re.search(r'(?<![\w.])' + re.escape(i) + r'(?![\d])', dec): faltan.append(f'{i}: «No cumple» que no llega a decisiones.md')
 ok = 0
