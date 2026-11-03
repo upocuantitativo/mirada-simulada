@@ -2,9 +2,10 @@
 Prueba en el motor de Power BI Desktop las medidas DAX del agente Power BI (ejemplo «Evolución de la producción»).
 Uso: abre Power BI Desktop con un informe en blanco y ejecuta
   powershell -ExecutionPolicy Bypass -File tools\probar_dax_powerbi.ps1 -Csv ejemplo\entrada\produccion.csv
+Con -PowerQuery importa el CSV con los pasos 1 a 3 de Power Query en lugar de cargarlo como tabla DAX.
 Sustituye el modelo del informe abierto: úsalo con un informe en blanco y ciérralo sin guardar.
 #>
-param([int]$Puerto, [string]$Modelo, [Parameter(Mandatory)][string]$Csv, [switch]$SinCrear)
+param([int]$Puerto, [string]$Modelo, [Parameter(Mandatory)][string]$Csv, [switch]$SinCrear, [switch]$PowerQuery)
 $ErrorActionPreference = 'Stop'
 $pbi = (Get-AppxPackage *PowerBIDesktop* | Select-Object -First 1).InstallLocation
 if (-not $pbi) { $pbi = "$env:ProgramFiles\Microsoft Power BI Desktop" }
@@ -57,7 +58,22 @@ $cal = @{
  )
  partitions = @(@{ name = 'Calendario'; source = @{ type = 'calculated'; expression = 'ADDCOLUMNS ( CALENDAR ( DATE ( 2017, 1, 1 ), DATE ( 2025, 12, 31 ) ), "Anio", YEAR ( [Date] ) )' } })
 }
-$dbdef = @{ name = $Modelo; id = $Modelo; compatibilityLevel = 1606; model = @{ name = 'Model'; culture = 'es-ES'; defaultPowerBIDataSourceVersion = 'powerBI_V3'; tables = @($prod, $cal); relationships = @(@{ name = 'Produccion_Calendario'; fromTable = 'Produccion'; fromColumn = 'Fecha'; toTable = 'Calendario'; toColumn = 'Date' }) } }
+if ($PowerQuery) {
+ # pasos 1 a 3 de 5_powerbi.md: CSV con «;», tipos enteros y columna Fecha, ejecutados por el motor de Power Query de Power BI
+ $ruta = (Resolve-Path $Csv).Path.Replace('"', '""')
+ $prod.partitions = @(@{ name = 'Produccion'; mode = 'import'; source = @{ type = 'm'; expression = @(
+  'let',
+  "    Origen = Csv.Document(File.Contents(""$ruta""), [Delimiter = "";"", Encoding = 65001, QuoteStyle = QuoteStyle.None]),",
+  '    Encabezados = Table.PromoteHeaders(Origen, [PromoteAllScalars = true]),',
+  '    Tipos = Table.TransformColumnTypes(Encabezados, {{"Anio", Int64.Type}, {"Unidades", Int64.Type}}),',
+  '    ConFecha = Table.AddColumn(Tipos, "Fecha", each #date([Anio], 12, 31), type date)',
+  'in',
+  '    ConFecha') } })
+ $prod.columns = @(
+  @{ name = 'Anio'; dataType = 'int64'; sourceColumn = 'Anio'; summarizeBy = 'none' },
+  @{ name = 'Unidades'; dataType = 'int64'; sourceColumn = 'Unidades' },
+  @{ name = 'Fecha'; dataType = 'dateTime'; sourceColumn = 'Fecha'; isHidden = $true })
+}$dbdef = @{ name = $Modelo; id = $Modelo; compatibilityLevel = 1606; model = @{ name = 'Model'; culture = 'es-ES'; defaultPowerBIDataSourceVersion = 'powerBI_V3'; tables = @($prod, $cal); relationships = @(@{ name = 'Produccion_Calendario'; fromTable = 'Produccion'; fromColumn = 'Fecha'; toTable = 'Calendario'; toColumn = 'Date' }) } }
 Ejecuta (@{ createOrReplace = @{ object = @{ database = $Modelo }; database = $dbdef } } | ConvertTo-Json -Depth 12)
 Ejecuta (@{ refresh = @{ type = 'full'; objects = @(@{ database = $Modelo; table = 'Produccion' }, @{ database = $Modelo; table = 'Calendario' }) } } | ConvertTo-Json -Depth 10)
 
