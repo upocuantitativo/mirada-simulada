@@ -1,0 +1,50 @@
+{
+  "nombre_pagina": "Crecimiento acumulado",
+  "titulo": "La producción se multiplicó por 6 entre 2017 y 2025: de 35 a 210 unidades",
+  "subtitulo": "Unidades producidas por año, 2017-2025",
+  "tarjeta": {
+    "medida": "Aumento acumulado",
+    "etiqueta": "unidades más en 2025 que en 2017"
+  },
+  "color_acento": "#0F5B78",
+  "anotaciones": [
+    {
+      "anio": 2020,
+      "texto": "+10, el menor aumento"
+    },
+    {
+      "anio": 2021,
+      "texto": "+35, el mayor aumento"
+    }
+  ],
+  "pie": "Fuente: produccion.csv. Actualizado: [FECHA PENDIENTE]",
+  "alt": {
+    "tarjeta": "Aumento de la producción entre 2017 y 2025: 175 unidades.",
+    "linea": "Gráfico de líneas de la producción anual, de 35 unidades en 2017 a 210 en 2025. Sube cada año; el menor aumento es en 2020 (+10) y el mayor en 2021 (+35)."
+  },
+  "pagina_ritmo": {
+    "titulo": "Ha subido todos los años: entre 10 y 35 unidades más cada año",
+    "subtitulo": "Unidades más que el año anterior, 2018-2025",
+    "alt": "Aumento anual: 15, 25, 10, 35, 20, 20, 30 y 20 unidades entre 2018 y 2025."
+  },
+  "pagina_anexo": true,
+  "medidas": [
+    {
+      "nombre": "Unidades 2021 a 2025",
+      "dax": "CALCULATE ( [Unidades totales], Calendario[Anio] >= 2021 )",
+      "formato": "#,0"
+    }
+  ],
+  "cifras": [
+    {
+      "texto": "+175",
+      "medida": "Aumento acumulado",
+      "valor": 175
+    },
+    {
+      "texto": "6",
+      "medida": "Veces que se multiplica",
+      "valor": 6
+    }
+  ]
+}

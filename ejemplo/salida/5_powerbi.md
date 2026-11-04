@@ -1,6 +1,6 @@
 # Despliegue en Power BI: «Evolución de la producción»
 
-No hay fichero .pbix. Este documento son instrucciones para que las aplique una persona.
+Este documento son las instrucciones para aplicar los cambios a mano. El proyecto de Power BI con la página principal ya mejorada lo crea `tools/powerbi_pbip.py` a partir de `propuesta.json`.
 
 Comprobación (3-nov-2026): el modelo (tablas `Produccion` y `Calendario`) y las nueve medidas se cargaron en el motor de Power BI Desktop 2.159 y se evaluaron con consultas DAX. Las cifras de control y el título dinámico salieron como se indica; «Anios con caida» daba en blanco y se corrigió en el paso 14. Con la relación `Produccion[Fecha]` → `Calendario[Date]` activa, filtrar por `Calendario[Anio]` da las mismas cifras (17 de 17 pruebas). Para repetirlo: `tools/probar_dax_powerbi.ps1`. Con `-PowerQuery`, el script importa `produccion.csv` con los pasos 1 a 3 (delimitador, tipos enteros y columna `Fecha`) en el motor de Power Query de Power BI: 9 filas, `Fecha` de 2020 = 31-12-2020 y las 17 pruebas correctas. No se comprobaron los visuales, el formato ni la publicación: necesitan la interfaz y una cuenta de Power BI.
 

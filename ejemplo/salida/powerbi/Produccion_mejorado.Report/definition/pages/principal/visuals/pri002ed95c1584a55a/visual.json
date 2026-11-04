@@ -1,0 +1,53 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
+  "name": "pri002ed95c1584a55a",
+  "position": {
+    "x": 40,
+    "y": 18,
+    "z": 0,
+    "height": 52,
+    "width": 1200
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "La producción se multiplicó por 6 entre 2017 y 2025: de 35 a 210 unidades",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "22pt",
+                      "fontWeight": "bold",
+                      "color": "#1F2937"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

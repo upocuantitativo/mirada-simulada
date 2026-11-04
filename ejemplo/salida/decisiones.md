@@ -1,7 +1,7 @@
 # Decisiones de la persona
 
 Ejemplo docente: estas decisiones las ha redactado el material del curso para enseñar la puerta humana. En tu trabajo las tomas tú.
-Decide: Docente de la microcredencial (ejemplo).
+Decide: Manuel Chaves Maza.
 
 | ID | Agente | Hallazgo | Decisión | Motivo |
 |---|---|---|---|---|

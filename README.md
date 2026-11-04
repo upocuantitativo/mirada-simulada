@@ -19,7 +19,8 @@ Haz fork y activa GitHub Pages: Settings, Pages, Deploy from a branch, `main`, `
 | `casos/`, `data/casos.json` | Casos de ejemplo y sus zonas |
 | `.claude/agents/`, `.claude/skills/revisar-visual/` | Equipo de agentes para Claude Code |
 | `modulo1/CRITERIOS.md` | Conceptos del Módulo 1 que aplican los agentes |
-| `ejemplo/` | Ejecución real del equipo sobre el gráfico de producción |
+| `ejemplo/` | Ejecución real del equipo sobre el gráfico de producción. En `ejemplo/salida/`: informe en Word, Power BI mejorado (`powerbi/`) e imágenes del antes y el después; en `ejemplo/entrada/powerbi/`, la pieza original en Power BI |
+| `tools/powerbi_pbip.py`, `tools/dibujar.py`, `tools/informe_word.py` | Lo que el orquestador ejecuta al final: Power BI mejorado (PBIP) a partir de `salida/propuesta.json`, comprobando sin IA que cada cifra de los textos sale de los datos; imagen del después; informe en Word. Datos en `entrada/datos.json` (plantilla en `plantillas/`). Requisitos: `pip install -r tools/requirements.txt` |
 | `comprobar.html`, `js/comprobar.js` | Comprueba tu panel: valora un .pbix o un proyecto .pbip con 14 reglas ligadas a `modulo1/CRITERIOS.md`, en el navegador. Prueba: `python tools/prueba_comprobador.py [fichero.pbix]` |
 | `ia_powerbi.html` | Claude y Codex en Power BI: servidor MCP oficial de Microsoft, instalación en Claude Desktop, Claude Code y Codex, y el ejemplo MercaSur |
 | `ejemplo_mercasur/` | Datos de MercaSur 360 y panel PBIP con dos páginas (Antes y Después), generado por `tools/gen_pbip_mercasur.py`; medidas comprobadas en Power BI con `tools/probar_dax_mercasur.ps1` |

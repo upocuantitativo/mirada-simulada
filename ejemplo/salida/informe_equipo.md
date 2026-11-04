@@ -12,7 +12,7 @@ Mensaje del brief: la producción ha crecido de forma sostenida desde 2017. Mens
 - Rechazados por ahora: B1.1, B1.4, B2.2, B2.4 y B2.7. Motivo declarado: sin datos de capacidad y demanda no se puede plantear una decisión honesta; se piden antes del comité.
 
 ## Cambios aprobados
-Los 19 cambios de `4_mejora.md`: cifra corregida a +175, hecho separado de interpretación, título de acción, Big Idea completa, un solo acento y gris por defecto, fuera banda, icono y rejilla, contraste de la línea, anotaciones en 2020 y 2021, subtítulo y pie, mensaje más arriba y más grande, y storyboard de tres páginas. El despliegue está en `5_powerbi.md`: 33 pasos, medidas DAX con cifras de control, textos alternativos y lista de comprobación. No hay .pbix; son instrucciones y no se ha ejecutado nada en Power BI.
+Los 19 cambios de `4_mejora.md`: cifra corregida a +175, hecho separado de interpretación, título de acción, Big Idea completa, un solo acento y gris por defecto, fuera banda, icono y rejilla, contraste de la línea, anotaciones en 2020 y 2021, subtítulo y pie, mensaje más arriba y más grande, y storyboard de tres páginas. El despliegue está en `5_powerbi.md`: 33 pasos, medidas DAX con cifras de control, textos alternativos y lista de comprobación. El proyecto de Power BI mejorado está en `powerbi/Produccion_mejorado.pbip`, creado por `tools/powerbi_pbip.py` a partir de `propuesta.json`; la persona lo abre y lo revisa en Power BI Desktop.
 
 ## Prueba A/B
 Versión A: la pieza original. Versión B: con los cambios 1 a 14. Mismo comité (30 personas simuladas) y semilla 2026. Se espera que suban el porcentaje que mira el mensaje y su tiempo de atención, y que baje el tiempo hasta la primera mirada; no se promete cuánto.
@@ -23,4 +23,4 @@ Versión A: la pieza original. Versión B: con los cambios 1 a 14. Mismo comité
 - Fecha de actualización del pie, responsable de publicación [NOMBRE PENDIENTE] y fecha de la prueba con personas reales.
 - Dirección, la audiencia principal, ve el mensaje solo en el 70 % (IC95 0,397-0,892, 10 personas simuladas): resultado poco preciso.
 
-La IA ha propuesto; las decisiones de esta tabla las ha tomado Docente de la microcredencial (ejemplo).
+La IA ha propuesto; las decisiones de esta tabla las ha tomado Manuel Chaves Maza.

@@ -1,0 +1,93 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
+  "name": "ane01c61f010371925d",
+  "position": {
+    "x": 40,
+    "y": 90,
+    "z": 1,
+    "height": 420,
+    "width": 520
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Produccion"
+                    }
+                  },
+                  "Property": "Anio"
+                }
+              },
+              "queryRef": "Produccion.Anio",
+              "nativeQueryRef": "Anio"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Produccion"
+                    }
+                  },
+                  "Property": "Unidades totales"
+                }
+              },
+              "queryRef": "Produccion.Unidades totales",
+              "nativeQueryRef": "Unidades totales"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Produccion"
+                    }
+                  },
+                  "Property": "Aumento anual"
+                }
+              },
+              "queryRef": "Produccion.Aumento anual",
+              "nativeQueryRef": "Aumento anual"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Tabla de producción anual con el total y el aumento frente al año anterior.'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

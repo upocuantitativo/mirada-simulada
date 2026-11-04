@@ -44,14 +44,15 @@
 </section>
 
 <section id="code" hidden>
-<p>Claude Code ejecuta el equipo de verdad: lanza los agentes, escribe sus informes y se detiene en cada puerta humana. Necesita Node.js y una cuenta de Claude con acceso a Claude Code, que es de pago.</p>
+<p>Claude Code ejecuta el equipo de verdad: lanza los agentes, escribe sus informes y se detiene en cada puerta humana. Al final te deja el proyecto de Power BI mejorado, la imagen del antes y el después y un informe en Word. Necesita Node.js, Python y una cuenta de Claude con acceso a Claude Code, que es de pago.</p>
 <ol>
-<li>Instala Claude Code: <code>npm install -g @anthropic-ai/claude-code</code></li>
-<li>Descarga tu copia del proyecto (<a href="montar.html">Móntalo tú</a>) y entra en la carpeta.</li>
-<li>Crea la carpeta <code>entrada/</code> con tres cosas: tu imagen, <code>informe_mirada.json</code> y <code>brief.md</code> (parte de <code>plantillas/brief.md</code>). Añade tus datos en CSV si los tienes.</li>
+<li>Instala lo necesario una vez: <code>npm install -g @anthropic-ai/claude-code</code> y, dentro de tu copia del proyecto (<a href="montar.html">Móntalo tú</a>), <code>pip install -r tools/requirements.txt</code>.</li>
+<li>Crea la carpeta <code>entrada/</code> con tu imagen, <code>informe_mirada.json</code>, <code>brief.md</code> (parte de <code>plantillas/brief.md</code>) y tus datos en CSV. Si tu pieza es una serie anual (una columna de año y otra de valor), copia también <code>plantillas/datos.json</code> y pon en ella el nombre del CSV, de la tabla y de las dos columnas: así el equipo puede crear el Power BI mejorado.</li>
 <li>Abre <code>claude</code> en esa carpeta y escribe <code>/revisar-visual</code>.</li>
-<li>Cuando pare, escribe tus decisiones. Los resultados quedan en <code>salida/</code>.</li>
+<li>Cuando pare, escribe tus decisiones. Para dos veces: primero para los hallazgos y después para los cambios.</li>
+<li>Abre <code>salida/</code>. Ahí están <code>Informe_equipo.docx</code>, <code>powerbi/*.pbip</code> (doble clic para abrirlo en Power BI Desktop), <code>antes_despues.png</code> y el informe de cada agente.</li>
 </ol>
+<p>Lo que ves en <code>ejemplo/salida/</code> es una ejecución completa con el gráfico de la diapositiva. Las cifras de los textos y del Power BI las calcula código sin IA a partir de los datos: si el agente escribe una cifra que no sale de ellos, no se crea el proyecto.</p>
 <p>Los ficheros que lo hacen posible son texto normal y puedes cambiarlos:</p>
 <pre><code>.claude/agents/mirada.md        un fichero por agente
 .claude/agents/narrativa.md
@@ -59,7 +60,10 @@
 .claude/agents/mejora.md
 .claude/agents/powerbi.md
 .claude/skills/revisar-visual/SKILL.md   el orquestador
-modulo1/CRITERIOS.md            los conceptos del Módulo 1</code></pre>
+modulo1/CRITERIOS.md            los conceptos del Módulo 1
+tools/powerbi_pbip.py           crea el Power BI mejorado y comprueba sus cifras
+tools/dibujar.py                dibuja el después
+tools/informe_word.py           reúne todo en un Word</code></pre>
 <p>Para crear un agente propio, añade un fichero con un nombre, una descripción de cuándo usarlo y sus instrucciones. Prueba a añadir uno que revise la accesibilidad con más detalle.</p>
 </section>
 

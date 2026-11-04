@@ -1,0 +1,24 @@
+{
+  "_ayuda": "Plantilla de salida/propuesta.json. La rellena el agente Power BI con los cambios APROBADOS. Toda cifra de los textos debe salir de entrada/produccion.csv: tools/powerbi_pbip.py lo comprueba y, si no cuadra, no crea el proyecto.",
+  "nombre_pagina": "Crecimiento acumulado",
+  "titulo": "Título de acción: la conclusión en una frase, con la cifra correcta",
+  "subtitulo": "Unidad y periodo, por ejemplo: Unidades producidas por año, 2017-2025",
+  "tarjeta": {"medida": "Aumento acumulado", "etiqueta": "Qué significa la cifra grande, en pocas palabras"},
+  "color_acento": "#0F5B78",
+  "anotaciones": [
+    {"anio": 2020, "texto": "Texto corto junto al punto de ese año"}
+  ],
+  "pie": "Fuente: produccion.csv. Actualizado: [FECHA PENDIENTE]",
+  "alt": {
+    "tarjeta": "Texto alternativo de la tarjeta",
+    "linea": "Texto alternativo del gráfico de líneas"
+  },
+  "pagina_ritmo": {"titulo": "Título de la página del aumento anual", "subtitulo": "Unidades más que el año anterior", "alt": "Texto alternativo"},
+  "pagina_anexo": true,
+  "medidas": [
+    {"nombre": "Nombre de una medida nueva", "dax": "SUM ( Produccion[Unidades] )", "formato": "#,0"}
+  ],
+  "cifras": [
+    {"texto": "+175", "medida": "Aumento acumulado", "valor": 175}
+  ]
+}

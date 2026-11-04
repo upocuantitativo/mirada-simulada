@@ -1,6 +1,6 @@
 # Brief de la revisión
 
-- **Autor o autora:** Docente de la microcredencial (ejemplo)
+- **Autor o autora:** Manuel Chaves Maza
 - **Pieza que se revisa:** gráfico «Evolución de la producción», fichero `grafico_antes.png`
 - **Audiencia principal:** Alta Dirección
 - **Otras audiencias:** Finanzas y Operaciones
@@ -9,3 +9,4 @@
 - **Mensaje que quiero transmitir, en una frase:** la producción ha crecido de forma sostenida desde 2017
 - **Datos de origen:** `produccion.csv`
 - **Tablas y columnas de Power BI:** tabla Produccion, columnas Anio y Unidades
+- **Proyecto de Power BI de la pieza:** `powerbi/Produccion_antes.pbip` (los nombres de tabla y columnas están en `datos.json`)

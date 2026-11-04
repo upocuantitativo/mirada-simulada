@@ -1,0 +1,88 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
+  "name": "ant03a856056b718250",
+  "position": {
+    "x": 36,
+    "y": 548,
+    "z": 3,
+    "height": 82,
+    "width": 1210
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "▮▮▮   ",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "20pt",
+                      "fontWeight": "bold",
+                      "color": "#A33A12"
+                    }
+                  },
+                  {
+                    "value": "Crecimiento sostenido:   ",
+                    "textStyle": {
+                      "fontFamily": "Georgia",
+                      "fontSize": "18pt",
+                      "color": "#1F2937"
+                    }
+                  },
+                  {
+                    "value": "+46 unidades",
+                    "textStyle": {
+                      "fontFamily": "Georgia",
+                      "fontSize": "20pt",
+                      "fontWeight": "bold",
+                      "color": "#A33A12"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FAE3CD'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

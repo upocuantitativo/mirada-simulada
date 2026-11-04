@@ -1,0 +1,22 @@
+table Calendario
+	lineageTag: a2e129d3-71a1-5395-8d68-5bcfbeb20c57
+	dataCategory: Time
+
+	column Date
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		isHidden
+		lineageTag: 05da284f-de32-51af-a887-aa118610923c
+		summarizeBy: none
+		sourceColumn: [Date]
+
+	column Anio
+		dataType: int64
+		lineageTag: c0ac9e21-431d-5b0c-8b7d-aa613febe220
+		summarizeBy: none
+		sourceColumn: [Anio]
+
+	partition Calendario = calculated
+		mode: import
+		source =
+			ADDCOLUMNS ( CALENDAR ( DATE ( 2017, 1, 1 ), DATE ( 2025, 12, 31 ) ), "Anio", YEAR ( [Date] ) )

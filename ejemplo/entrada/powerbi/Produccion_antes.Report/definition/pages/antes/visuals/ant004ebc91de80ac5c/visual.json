@@ -1,0 +1,79 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
+  "name": "ant004ebc91de80ac5c",
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0,
+    "height": 58,
+    "width": 1280
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "APLICANDO",
+                    "textStyle": {
+                      "fontFamily": "Georgia",
+                      "fontSize": "18pt",
+                      "fontWeight": "bold",
+                      "color": "#1F2937"
+                    }
+                  },
+                  {
+                    "value": "      ANTES / DESPUÉS · NARRACIÓN CON DATOS",
+                    "textStyle": {
+                      "fontFamily": "Georgia",
+                      "fontSize": "11pt",
+                      "color": "#1F2937"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFBE5C'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

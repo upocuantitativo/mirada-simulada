@@ -1,0 +1,76 @@
+table Produccion
+	lineageTag: 00902130-e3c2-5e8c-a9d5-83d1357dab13
+
+	measure 'Unidades totales' = SUM ( Produccion[Unidades] )
+		formatString: #,0
+		lineageTag: e4b046cd-cfdb-51c7-a37f-4f5cadf3116f
+
+	measure 'Unidades ultimo anio' = CALCULATE ( SUM ( Produccion[Unidades] ), Produccion[Anio] = MAX ( Produccion[Anio] ) )
+		formatString: #,0
+		lineageTag: 767ac824-2b82-53ee-bad5-d835b2b6c21c
+
+	measure 'Unidades primer anio' = CALCULATE ( SUM ( Produccion[Unidades] ), Produccion[Anio] = MIN ( Produccion[Anio] ) )
+		formatString: #,0
+		lineageTag: fe599814-928f-5a75-a2ad-35a90f6cf852
+
+	measure 'Aumento acumulado' = [Unidades ultimo anio] - [Unidades primer anio]
+		formatString: +#,0;-#,0;0
+		lineageTag: aefff966-c7f7-5e90-9718-c605c0efcdf7
+
+	measure 'Veces que se multiplica' = DIVIDE ( [Unidades ultimo anio], [Unidades primer anio] )
+		formatString: 0.0
+		lineageTag: b77cdf67-c61a-5f2e-adc9-f6c1fec2a260
+
+	measure 'Crecimiento acumulado' = DIVIDE ( [Aumento acumulado], [Unidades primer anio] )
+		formatString: 0%
+		lineageTag: 31ec679d-058b-58b9-ab15-2d65a1d18166
+
+	measure 'Aumento anual' = VAR A = MAX ( Produccion[Anio] ) VAR Previo = CALCULATE ( SUM ( Produccion[Unidades] ), Produccion[Anio] = A - 1 ) RETURN IF ( NOT ISBLANK ( Previo ), SUM ( Produccion[Unidades] ) - Previo )
+		formatString: +#,0;-#,0;0
+		lineageTag: c7828d6d-77e8-5ab4-9675-695ac48785bf
+
+	measure 'Aumento anual medio' = DIVIDE ( [Aumento acumulado], DISTINCTCOUNT ( Produccion[Anio] ) - 1 )
+		formatString: 0.0
+		lineageTag: 32dab459-7b0d-5cb2-bb2b-5772bda87b12
+
+	measure 'Anios con caida' = COALESCE ( COUNTROWS ( FILTER ( VALUES ( Produccion[Anio] ), [Aumento anual] < 0 ) ), 0 )
+		formatString: 0
+		lineageTag: a117756b-532e-56e0-a4b4-1cbe0c51d7a5
+
+	measure 'Titulo dinamico' = IF ( HASONEVALUE ( Produccion[Anio] ), "Producción de " & VALUES ( Produccion[Anio] ) & ": " & FORMAT ( [Unidades totales], "#,##0" ) & " unidades", "La producción pasó de " & [Unidades primer anio] & " a " & [Unidades ultimo anio] & " unidades entre " & MIN ( Produccion[Anio] ) & " y " & MAX ( Produccion[Anio] ) & " (+" & [Aumento acumulado] & ")" )
+		lineageTag: 4b9e4b8c-3826-5abf-b9c7-ee892c0799ba
+
+	measure 'Unidades 2021 a 2025' = CALCULATE ( [Unidades totales], Calendario[Anio] >= 2021 )
+		formatString: #,0
+		lineageTag: 307b615c-6dd0-5ca3-890f-0daa6a32c075
+
+	column Anio
+		dataType: int64
+		lineageTag: f25b4bf8-43ce-5c54-b1a5-7af24e54467c
+		summarizeBy: none
+		sourceColumn: Anio
+
+	column Unidades
+		dataType: int64
+		lineageTag: 5bc3ab9f-4871-53a7-963e-8e0c39534d85
+		summarizeBy: none
+		sourceColumn: Unidades
+
+	column Fecha
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		isHidden
+		lineageTag: f25a5899-74de-58b8-93d1-e62e13d733b1
+		summarizeBy: none
+		sourceColumn: Fecha
+
+	partition Produccion = m
+		mode: import
+		source =
+			let
+							Origen = Csv.Document(Binary.Decompress(Binary.FromText("HcmxDcAgEEPRnmnOBgLIVYbIAJFIQUOK7C9Fd9V/ls+9Xl17zXs+X6KhKVdvVzXvUPNNU49CoB+kUAJZOAJFGIEqwtIP", BinaryEncoding.Base64), Compression.Deflate), [Delimiter=";", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+							Encabezados = Table.PromoteHeaders(Origen, [PromoteAllScalars=true]),
+							Tipos = Table.TransformColumnTypes(Encabezados, {{"Anio", Int64.Type}, {"Unidades", Int64.Type}}, "es-ES"),
+							ConFecha = Table.AddColumn(Tipos, "Fecha", each #date([Anio], 12, 31), type date)
+			in
+							ConFecha

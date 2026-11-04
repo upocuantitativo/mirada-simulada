@@ -1,0 +1,3 @@
+relationship c868c210-8725-5563-bc68-f58343a855db
+	fromColumn: Produccion.Fecha
+	toColumn: Calendario.Date

@@ -1,0 +1,7 @@
+{
+  "csv": "produccion.csv",
+  "separador": ";",
+  "tabla": "Produccion",
+  "anio": "Anio",
+  "valor": "Unidades"
+}

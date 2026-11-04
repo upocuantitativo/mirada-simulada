@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Produccion_mejorado"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "74a102db-d8ab-51db-be39-f16d78f2e55f"
+  }
+}
